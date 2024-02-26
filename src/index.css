@@ -1,1 +1,28 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.player-one {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.player-two {
+  display: flex;
+  flex-direction: column;
+}
+
+.player-one .camp {
+  flex-direction: column-reverse;
+  margin: -10px auto;
+}

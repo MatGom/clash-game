@@ -1,0 +1,48 @@
+.camp {
+  margin: 10px auto;
+  height: 100%;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  box-shadow: 0 0 2px 2px #945104;
+
+  &Image {
+    height: 60px;
+    width: 100%;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #945104;
+  }
+
+  &Stats {
+    font-weight: bold;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  &Attack {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #d03737;
+  }
+
+  &Defence {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #4b58be;
+  }
+
+  .campStatIcon {
+    font-size: 12px;
+  }
+
+  .campStat {
+    margin-left: 2px;
+    font-size: 12px;
+  }
+}
