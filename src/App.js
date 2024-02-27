@@ -1,9 +1,9 @@
-import Game from './components/Game';
+import Start from './components/Start';
 
 function App() {
   return (
     <div className='container'>
-      <Game />
+      <Start />
     </div>
   );
 }

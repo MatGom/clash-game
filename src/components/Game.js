@@ -2,7 +2,7 @@ import styles from './Game.module.scss';
 
 import Player from './Player';
 
-const Game = () => {
+const Game = ({ playerOneName, playerTwoName }) => {
   const castle = {
     levelOne: 100,
     levelTwo: 150,
@@ -12,7 +12,7 @@ const Game = () => {
   const players = [
     {
       id: 'playerOne',
-      name: 'Player 1',
+      name: playerOneName,
       playerClass: 'player-one',
       gold: 1000,
       castleStats: {
@@ -39,7 +39,7 @@ const Game = () => {
     },
     {
       id: 'playerTwo',
-      name: 'Player 2',
+      name: playerTwoName,
       playerClass: 'player-two',
       gold: 1200,
       castleStats: {
