@@ -34,49 +34,7 @@
     justify-content: center;
     flex-wrap: wrap;
 
-    .unit {
-      margin: 4px;
-      padding: 6px;
-      width: 45%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      box-shadow: 0 0 1px 1px #33d724;
-      background: #33d724;
 
-      &Title {
-        font-size: 16px;
-      }
-
-      &Image {
-        margin: 6px;
-        width: 30px;
-        height: 30px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        .icon {
-          font-size: 20px;
-        }
-      }
-
-      &Stats {
-        margin: 8px;
-      }
-
-      &Stats p {
-        text-align: center;
-        font-size: 12px;
-      }
-
-      &Buy {
-        padding: 2px 5px;
-        font-size: 12px;
-        background: #d9ff00;
-        text-transform: uppercase;
-      }
-    }
   }
 
   .goldThisTurn {
