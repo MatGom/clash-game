@@ -1,40 +1,41 @@
+import { useSelector } from 'react-redux';
 import styles from './Game.module.scss';
 
 import Player from './Player';
 import Settings from './Settings';
 
 const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame }) => {
-  const castle = {
-    levelOne: 100,
-    levelTwo: 150,
-    levelThree: 200,
-  };
+  const { totalGold } = useSelector(state => state.totalGold);
+  const { castleLevel } = useSelector(state => state.castleLevel);
+  const { totalCampAttack } = useSelector(state => state.totalCampAttack);
+  const { totalCampDefence } = useSelector(state => state.totalCampDefence);
+  const { goldPerTurn } = useSelector(state => state.goldPerTurn);
 
   const players = [
     {
       id: 'playerOne',
       name: playerOneName,
       playerClass: 'player-one',
-      gold: 1000,
+      gold: totalGold,
       castleStats: {
-        level: 2,
-        gold: castle.levelTwo,
+        level: castleLevel,
+        gold: goldPerTurn,
       },
       campStats: {
         campOne: {
           name: 'Camp 1',
-          attack: 120,
-          defence: 110,
+          attack: totalCampAttack,
+          defence: totalCampDefence,
         },
         campTwo: {
           name: 'Camp 2',
-          attack: 70,
-          defence: 100,
+          attack: totalCampAttack,
+          defence: totalCampDefence,
         },
         campThree: {
           name: 'Camp 3',
-          attack: 110,
-          defence: 80,
+          attack: totalCampAttack,
+          defence: totalCampDefence,
         },
       },
     },
@@ -42,26 +43,26 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame }) => {
       id: 'playerTwo',
       name: playerTwoName,
       playerClass: 'player-two',
-      gold: 1200,
+      gold: totalGold,
       castleStats: {
-        level: 1,
-        gold: castle.levelOne,
+        level: castleLevel,
+        gold: goldPerTurn,
       },
       campStats: {
         campOne: {
           name: 'Camp 1',
-          attack: 80,
-          defence: 110,
+          attack: totalCampAttack,
+          defence: totalCampDefence,
         },
         campTwo: {
           name: 'Camp 2',
-          attack: 100,
-          defence: 70,
+          attack: totalCampAttack,
+          defence: totalCampDefence,
         },
         campThree: {
           name: 'Camp 3',
-          attack: 110,
-          defence: 120,
+          attack: totalCampAttack,
+          defence: totalCampDefence,
         },
       },
     },

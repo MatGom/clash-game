@@ -34,6 +34,7 @@ const CastleModal = ({ castleStats, upgradeCastle, cancelCastle }) => {
           Cancel
         </button>
       </div>
+      <p>Gold to spend this turn 100</p>
     </div>
   );
 };
