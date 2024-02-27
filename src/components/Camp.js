@@ -4,6 +4,7 @@ import styles from './Camp.module.scss';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCampground, faShield, faSkull } from '@fortawesome/free-solid-svg-icons';
+
 import CampModal from './CampModal';
 
 const Camp = ({ name, attack, defence }) => {
