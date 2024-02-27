@@ -3,11 +3,13 @@ import { useState } from 'react';
 import styles from './Start.module.scss';
 
 import Game from './Game';
+import RulesModal from './RulesModal';
 
 const Start = () => {
   const [gameIsOn, setGameIsOn] = useState(false);
   const [playerOneName, setPlayerOneName] = useState('');
   const [playerTwoName, setPlayerTwoName] = useState('');
+  const [rulesModalIsOpen, setRulesModalIsOpen] = useState(false);
 
   const handleStartGame = () => {
     if (playerOneName.trim().length >= 3 && playerTwoName.trim().length >= 3) {
@@ -17,12 +19,22 @@ const Start = () => {
     }
   };
 
+  const handleShowRulesModal = () => {
+    setRulesModalIsOpen(true);
+  };
+
+  const handleCloseRulesModal = () => {
+    setRulesModalIsOpen(false);
+  };
+
   return (
     <>
       {!gameIsOn ? (
         <div className={styles.start}>
           <h1 className={styles.gameTitle}>Clash Game</h1>
-          <button className={styles.gameRulesButton}>Rules</button>
+          <button className={styles.gameRulesButton} onClick={handleShowRulesModal}>
+            Rules
+          </button>
           <form className={styles.playersSettings}>
             <label className={styles.playersNames}>Enter player's names</label>
             <input
@@ -49,6 +61,7 @@ const Start = () => {
       ) : (
         <Game playerOneName={playerOneName} playerTwoName={playerTwoName} />
       )}
+      {rulesModalIsOpen ? <RulesModal closeModal={handleCloseRulesModal} /> : null}
     </>
   );
 };
