@@ -59,7 +59,7 @@ const Start = () => {
           </button>
         </div>
       ) : (
-        <Game playerOneName={playerOneName} playerTwoName={playerTwoName} />
+        <Game playerOneName={playerOneName} playerTwoName={playerTwoName} showRulesModal={handleShowRulesModal} />
       )}
       {rulesModalIsOpen ? <RulesModal closeModal={handleCloseRulesModal} /> : null}
     </>

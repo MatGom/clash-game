@@ -1,0 +1,20 @@
+.settings {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  width: 50%;
+  justify-content: space-evenly;
+  align-items: center;
+
+  .rulesIcon, .settingsIcon {
+    color: rgb(0, 166, 255);
+  }
+
+  .endTurnButton {
+    background: #e96161;
+    padding: 16px;
+    border-radius: 20px;
+  }
+}

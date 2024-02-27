@@ -1,8 +1,9 @@
 import styles from './Game.module.scss';
 
 import Player from './Player';
+import Settings from './Settings';
 
-const Game = ({ playerOneName, playerTwoName }) => {
+const Game = ({ playerOneName, playerTwoName, showRulesModal }) => {
   const castle = {
     levelOne: 100,
     levelTwo: 150,
@@ -78,6 +79,7 @@ const Game = ({ playerOneName, playerTwoName }) => {
           campStats={player.campStats}
         />
       ))}
+      <Settings showRulesModal={showRulesModal} />
     </div>
   );
 };
