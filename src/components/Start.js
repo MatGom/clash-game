@@ -19,6 +19,10 @@ const Start = () => {
     }
   };
 
+  const handleEndGame = () => {
+    setGameIsOn(false);
+  };
+
   const handleShowRulesModal = () => {
     setRulesModalIsOpen(true);
   };
@@ -59,7 +63,12 @@ const Start = () => {
           </button>
         </div>
       ) : (
-        <Game playerOneName={playerOneName} playerTwoName={playerTwoName} showRulesModal={handleShowRulesModal} />
+        <Game
+          playerOneName={playerOneName}
+          playerTwoName={playerTwoName}
+          showRulesModal={handleShowRulesModal}
+          endGame={handleEndGame}
+        />
       )}
       {rulesModalIsOpen ? <RulesModal closeModal={handleCloseRulesModal} /> : null}
     </>
