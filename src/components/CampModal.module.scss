@@ -1,0 +1,106 @@
+.campModal {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 75%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  background: #03ad39;
+  box-shadow: 0 0 2px 2px #03ad39;
+
+  .campName {
+    padding: 4px;
+    font-size: 18px;
+    text-transform: uppercase;
+  }
+
+  .campStats {
+    margin: 2px;
+    padding: 2px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    font-weight: bold;
+    background: #d9ff00;
+  }
+
+  .unitsWrapper {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    .unit {
+      margin: 4px;
+      padding: 6px;
+      width: 45%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 0 1px 1px #33d724;
+      background: #33d724;
+
+      &Title {
+        font-size: 16px;
+      }
+
+      &Image {
+        margin: 6px;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .icon {
+          font-size: 20px;
+        }
+      }
+
+      &Stats {
+        margin: 8px;
+      }
+
+      &Stats p {
+        text-align: center;
+        font-size: 12px;
+      }
+
+      &Buy {
+        padding: 2px 5px;
+        font-size: 12px;
+        background: #d9ff00;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  .goldThisTurn {
+    padding: 4px;
+    font-size: 14px;
+  }
+
+  .buttons {
+    margin: 5px;
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+
+    button {
+      padding: 4px;
+      width: 40%;
+      font-size: 14px;
+    }
+
+    .save {
+      background: #5dfa7a;
+    }
+
+    .cancel {
+      background: #f0553d;
+    }
+  }
+}
