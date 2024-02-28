@@ -1,11 +1,11 @@
 import PlayerInfo from './PlayerInfo';
 import PlayerCamps from './PlayerCamps';
 
-const Player = ({ playerClass, name, gold, goldToSpendThisTurn, castle, camps }) => {
+const Player = ({ playerId, playerClass, name, gold, camps }) => {
   return (
     <div className={playerClass}>
-      <PlayerInfo name={name} gold={gold} goldToSpendThisTurn={goldToSpendThisTurn} castle={castle} />
-      <PlayerCamps camps={camps} goldToSpendThisTurn={goldToSpendThisTurn} />
+      <PlayerInfo playerId={playerId} name={name} gold={gold} />
+      <PlayerCamps playerId={playerId} camps={camps} />
     </div>
   );
 };

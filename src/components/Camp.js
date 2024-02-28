@@ -8,7 +8,7 @@ import { faCampground, faShield, faSkull } from '@fortawesome/free-solid-svg-ico
 
 import CampModal from './CampModal';
 
-const Camp = ({ campId, name, goldToSpendThisTurn }) => {
+const Camp = ({ playerId, campId, name }) => {
   const [campModalIsOpen, setCampModalIsOpen] = useState(false);
 
   const campAttack = useSelector(state => state.totalCampAttack.totalCampAttack[campId]);
@@ -45,11 +45,11 @@ const Camp = ({ campId, name, goldToSpendThisTurn }) => {
       </div>
       {campModalIsOpen ? (
         <CampModal
+          playerId={playerId}
           campId={campId}
           name={name}
           saveCamp={handleSaveCampModal}
           cancelCamp={handleCancelCampModal}
-          goldToSpendThisTurn={goldToSpendThisTurn}
         />
       ) : null}
     </>

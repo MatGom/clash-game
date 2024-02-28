@@ -5,6 +5,7 @@ import totalCampAttackReducer from './totalCampAttack';
 import totalCampDefenceReducer from './totalCampDefence';
 import goldPerTurnReducer from './goldPerTurn';
 import unitsOwnedReducer from './unitsOwned';
+import goldToSpendThisTurnReducer from './goldToSpendThisTurn'
 
 export default configureStore({
   reducer: {
@@ -14,5 +15,6 @@ export default configureStore({
     totalCampDefence: totalCampDefenceReducer,
     goldPerTurn: goldPerTurnReducer,
     unitsOwned: unitsOwnedReducer,
+    goldToSpendThisTurn: goldToSpendThisTurnReducer
   },
 });

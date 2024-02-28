@@ -6,17 +6,30 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFortAwesome } from '@fortawesome/free-brands-svg-icons';
 import { faCoins } from '@fortawesome/free-solid-svg-icons';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { upgradeCastleLevel } from '../redux/castleLevel';
+import { increaseGoldPerTurn } from '../redux/goldPerTurn';
+import { upgradeGoldToSpendThisTurn } from '../redux/goldToSpendThisTurn';
+
 import CastleModal from './CastleModal';
 
-const PlayerInfo = ({ name, gold, goldToSpendThisTurn, castle }) => {
+const PlayerInfo = ({ playerId, name, gold }) => {
   const [castleModalIsOpen, setCastleModalIsOpen] = useState(false);
+
+  const castleLevel = useSelector(state => state.castleLevel.players[playerId]?.castleLevel || 1);
+  const goldToSpendThisTurn = useSelector(
+    state => state.goldToSpendThisTurn.players[playerId]?.goldToSpendThisTurn || 100
+  );
+  const dispatch = useDispatch();
 
   const handleShowCastleModal = () => {
     setCastleModalIsOpen(true);
   };
 
-  const handleUpgradeCastleModal = () => {
-    setCastleModalIsOpen(false);
+  const handleUpgradeCastleModal = playerId => {
+    dispatch(upgradeCastleLevel({ playerId }));
+    dispatch(increaseGoldPerTurn({ playerId }));
+    dispatch(upgradeGoldToSpendThisTurn({ playerId }));
   };
 
   const handleCancelCastleModal = () => {
@@ -32,16 +45,16 @@ const PlayerInfo = ({ name, gold, goldToSpendThisTurn, castle }) => {
             <FontAwesomeIcon className={styles.goldIcon} icon={faCoins} />
             <p className={styles.goldAmount}>{gold}</p>
           </div>
-          <div className={styles.mine} onClick={handleShowCastleModal}>
-            <FontAwesomeIcon className={styles.mineIcon} icon={faFortAwesome} />
-            <p className={styles.mineLevel}>{castle.level}</p>
+          <div className={styles.castle} onClick={handleShowCastleModal}>
+            <FontAwesomeIcon className={styles.castleIcon} icon={faFortAwesome} />
+            <p className={styles.castleLevel}>{castleLevel}</p>
           </div>
         </div>
       </div>
       {castleModalIsOpen ? (
         <CastleModal
+          playerId={playerId}
           goldToSpendThisTurn={goldToSpendThisTurn}
-          castle={castle}
           upgradeCastle={handleUpgradeCastleModal}
           cancelCastle={handleCancelCastleModal}
         />

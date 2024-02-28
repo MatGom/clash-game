@@ -1,25 +1,31 @@
 import styles from './CastleModal.module.scss';
 
+import { useSelector } from 'react-redux';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFortAwesome } from '@fortawesome/free-brands-svg-icons';
 import { faCoins } from '@fortawesome/free-solid-svg-icons';
 
-const CastleModal = ({ castle, upgradeCastle, cancelCastle, goldToSpendThisTurn }) => {
+const CastleModal = ({ playerId, upgradeCastle, cancelCastle }) => {
+  const castleLevel = useSelector(state => state.castleLevel.players[playerId]?.castleLevel || 1);
+  const goldPerTurn = useSelector(state => state.goldPerTurn.players[playerId]?.goldPerTurn || 100);
+  const goldToSpendThisTurn = useSelector(state => state.goldToSpendThisTurn.players[playerId]?.goldToSpendThisTurn || 100);
+
   return (
     <div className={styles.castleModal}>
       <div className={styles.castleHeader}>
         <h2 className={styles.castleTitle}>Castle</h2>
-        <h3 className={styles.castleLevel}>Level {castle.level}</h3>
+        <h3 className={styles.castleLevel}>Level {castleLevel}</h3>
       </div>
       <FontAwesomeIcon className={styles.castleIcon} icon={faFortAwesome} />
       <div className={styles.castleInfo}>
         <div className={styles.castleCurrentLevel}>
-          <p>Current level ({castle.level})</p>
-          <p>{castle.gold} gold per turn</p>
+          <p>Current level ({castleLevel})</p>
+          <p>{goldPerTurn} gold per turn</p>
         </div>
         <div className={styles.castleNextLevel}>
-          <p>Next level ({castle.level + 1})</p>
-          <p>{castle.gold + 50} gold per turn</p>
+          <p>Next level ({castleLevel + 1})</p>
+          <p>{goldPerTurn + 50} gold per turn</p>
         </div>
       </div>
       <div className={styles.castleUpgradeWrapper}>
@@ -27,7 +33,7 @@ const CastleModal = ({ castle, upgradeCastle, cancelCastle, goldToSpendThisTurn 
           Cost <FontAwesomeIcon className={styles.goldIcon} icon={faCoins} />
           50
         </p>
-        <button className={styles.castleUpgradeButton} onClick={upgradeCastle}>
+        <button className={styles.castleUpgradeButton} onClick={() => upgradeCastle(playerId)}>
           Upgrade
         </button>
         <button className={styles.castleCancelButton} onClick={cancelCastle}>

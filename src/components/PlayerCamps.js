@@ -2,11 +2,16 @@ import styles from './PlayerCamps.module.scss';
 
 import Camp from './Camp';
 
-const PlayerCamps = ({ camps, goldToSpendThisTurn }) => {
+const PlayerCamps = ({ playerId, camps }) => {
   return (
     <div className={styles.playerCamps}>
       {camps.map(camp => (
-        <Camp key={camp.id} campId={camp.id} name={camp.name} goldToSpendThisTurn={goldToSpendThisTurn} />
+        <Camp
+          key={camp.id}
+          playerId={playerId}
+          campId={camp.id}
+          name={camp.name}
+        />
       ))}
     </div>
   );
