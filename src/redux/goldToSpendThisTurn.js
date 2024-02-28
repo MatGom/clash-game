@@ -15,9 +15,15 @@ export const goldToSpendThisTurnSlice = createSlice({
         state.players[playerId].goldToSpendThisTurn += 10;
       }
     },
+    decreaseGoldToSpendThisTurn: (state, action) => {
+      const { playerId, amount } = action.payload;
+      if (state.players[playerId]) {
+        state.players[playerId].goldToSpendThisTurn -= amount;
+      }
+    },
   },
 });
 
-export const { upgradeGoldToSpendThisTurn } = goldToSpendThisTurnSlice.actions;
+export const { upgradeGoldToSpendThisTurn, decreaseGoldToSpendThisTurn } = goldToSpendThisTurnSlice.actions;
 
 export default goldToSpendThisTurnSlice.reducer;

@@ -9,15 +9,16 @@ export const goldPerTurnSlice = createSlice({
     },
   },
   reducers: {
-    increaseGoldPerTurn: (state, action) => {
+    upgradeGoldPerTurn: (state, action) => {
       const { playerId } = action.payload;
       if (state.players[playerId]) {
         state.players[playerId].goldPerTurn += 50;
       }
     },
+    
   },
 });
 
-export const { increaseGoldPerTurn } = goldPerTurnSlice.actions;
+export const { upgradeGoldPerTurn } = goldPerTurnSlice.actions;
 
 export default goldPerTurnSlice.reducer;

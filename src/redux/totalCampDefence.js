@@ -13,7 +13,7 @@ export const totalCampDefenceSlice = createSlice({
     },
   },
   reducers: {
-    incrementDefence: (state, action) => {
+    increaseDefence: (state, action) => {
       const { campId, defence } = action.payload;
       if (state.totalCampDefence[campId] === undefined) {
         state.totalCampDefence[campId] = 0;
@@ -23,6 +23,6 @@ export const totalCampDefenceSlice = createSlice({
   },
 });
 
-export const { incrementDefence } = totalCampDefenceSlice.actions;
+export const { increaseDefence } = totalCampDefenceSlice.actions;
 
 export default totalCampDefenceSlice.reducer;

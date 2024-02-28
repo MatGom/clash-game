@@ -43,7 +43,7 @@ export const unitsOwnedSlice = createSlice({
     },
   },
   reducers: {
-    incrementOwned: (state, action) => {
+    increaseOwned: (state, action) => {
       const { campId, unitId } = action.payload;
       if (!state.camps[campId]) {
         state.camps[campId] = {};
@@ -56,6 +56,6 @@ export const unitsOwnedSlice = createSlice({
   },
 });
 
-export const { incrementOwned } = unitsOwnedSlice.actions;
+export const { increaseOwned } = unitsOwnedSlice.actions;
 
 export default unitsOwnedSlice.reducer;

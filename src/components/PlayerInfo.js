@@ -8,28 +8,36 @@ import { faCoins } from '@fortawesome/free-solid-svg-icons';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { upgradeCastleLevel } from '../redux/castleLevel';
-import { increaseGoldPerTurn } from '../redux/goldPerTurn';
-import { upgradeGoldToSpendThisTurn } from '../redux/goldToSpendThisTurn';
+import { upgradeGoldPerTurn } from '../redux/goldPerTurn';
+import { decreaseTotalGold } from '../redux/totalGold';
+import { upgradeGoldToSpendThisTurn, decreaseGoldToSpendThisTurn } from '../redux/goldToSpendThisTurn';
 
 import CastleModal from './CastleModal';
 
-const PlayerInfo = ({ playerId, name, gold }) => {
+const PlayerInfo = ({ playerId, name }) => {
   const [castleModalIsOpen, setCastleModalIsOpen] = useState(false);
 
-  const castleLevel = useSelector(state => state.castleLevel.players[playerId]?.castleLevel || 1);
-  const goldToSpendThisTurn = useSelector(
-    state => state.goldToSpendThisTurn.players[playerId]?.goldToSpendThisTurn || 100
-  );
+  const castleLevel = useSelector(state => state.castleLevel.players[playerId]?.castleLevel);
+  const goldToSpendThisTurn = useSelector(state => state.goldToSpendThisTurn.players[playerId]?.goldToSpendThisTurn);
+  const totalGold = useSelector(state => state.totalGold.players[playerId]?.totalGold);
   const dispatch = useDispatch();
+
+  const castleCost = 50;
 
   const handleShowCastleModal = () => {
     setCastleModalIsOpen(true);
   };
 
   const handleUpgradeCastleModal = playerId => {
-    dispatch(upgradeCastleLevel({ playerId }));
-    dispatch(increaseGoldPerTurn({ playerId }));
-    dispatch(upgradeGoldToSpendThisTurn({ playerId }));
+    if (goldToSpendThisTurn >= castleCost) {
+      dispatch(decreaseGoldToSpendThisTurn({ playerId, amount: castleCost }));
+      dispatch(decreaseTotalGold({ playerId, amount: castleCost }));
+      dispatch(upgradeCastleLevel({ playerId }));
+      dispatch(upgradeGoldPerTurn({ playerId }));
+      // dispatch(upgradeGoldToSpendThisTurn({ playerId }));
+    } else {
+      alert('No more gold!');
+    }
   };
 
   const handleCancelCastleModal = () => {
@@ -43,7 +51,7 @@ const PlayerInfo = ({ playerId, name, gold }) => {
         <div className={styles.score}>
           <div className={styles.gold}>
             <FontAwesomeIcon className={styles.goldIcon} icon={faCoins} />
-            <p className={styles.goldAmount}>{gold}</p>
+            <p className={styles.goldAmount}>{totalGold}</p>
           </div>
           <div className={styles.castle} onClick={handleShowCastleModal}>
             <FontAwesomeIcon className={styles.castleIcon} icon={faFortAwesome} />
@@ -53,6 +61,7 @@ const PlayerInfo = ({ playerId, name, gold }) => {
       </div>
       {castleModalIsOpen ? (
         <CastleModal
+          castleCost={castleCost}
           playerId={playerId}
           goldToSpendThisTurn={goldToSpendThisTurn}
           upgradeCastle={handleUpgradeCastleModal}
