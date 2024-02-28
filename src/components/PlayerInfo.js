@@ -8,7 +8,7 @@ import { faCoins } from '@fortawesome/free-solid-svg-icons';
 
 import CastleModal from './CastleModal';
 
-const PlayerInfo = ({ name, gold, castleStats }) => {
+const PlayerInfo = ({ name, gold, goldToSpendThisTurn, castle }) => {
   const [castleModalIsOpen, setCastleModalIsOpen] = useState(false);
 
   const handleShowCastleModal = () => {
@@ -34,13 +34,14 @@ const PlayerInfo = ({ name, gold, castleStats }) => {
           </div>
           <div className={styles.mine} onClick={handleShowCastleModal}>
             <FontAwesomeIcon className={styles.mineIcon} icon={faFortAwesome} />
-            <p className={styles.mineLevel}>{castleStats.level}</p>
+            <p className={styles.mineLevel}>{castle.level}</p>
           </div>
         </div>
       </div>
       {castleModalIsOpen ? (
         <CastleModal
-          castleStats={castleStats}
+          goldToSpendThisTurn={goldToSpendThisTurn}
+          castle={castle}
           upgradeCastle={handleUpgradeCastleModal}
           cancelCastle={handleCancelCastleModal}
         />

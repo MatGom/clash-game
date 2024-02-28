@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import styles from './Camp.module.scss';
 
@@ -7,8 +8,11 @@ import { faCampground, faShield, faSkull } from '@fortawesome/free-solid-svg-ico
 
 import CampModal from './CampModal';
 
-const Camp = ({ name, attack, defence }) => {
+const Camp = ({ campId, name, goldToSpendThisTurn }) => {
   const [campModalIsOpen, setCampModalIsOpen] = useState(false);
+
+  const campAttack = useSelector(state => state.totalCampAttack.totalCampAttack[campId]);
+  const campDefence = useSelector(state => state.totalCampDefence.totalCampDefence[campId]);
 
   const handleShowCampModal = () => {
     setCampModalIsOpen(true);
@@ -31,21 +35,21 @@ const Camp = ({ name, attack, defence }) => {
         <div className={styles.campStats}>
           <div className={styles.campAttack}>
             <FontAwesomeIcon className={styles.campStatIcon} icon={faSkull} />
-            <p className={styles.campStat}>{attack}</p>
+            <p className={styles.campStat}>{campAttack}</p>
           </div>
           <div className={styles.campDefence}>
             <FontAwesomeIcon className={styles.campStatIcon} icon={faShield} />
-            <p className={styles.campStat}>{defence}</p>
+            <p className={styles.campStat}>{campDefence}</p>
           </div>
         </div>
       </div>
       {campModalIsOpen ? (
         <CampModal
+          campId={campId}
           name={name}
-          attack={attack}
-          defence={defence}
           saveCamp={handleSaveCampModal}
           cancelCamp={handleCancelCampModal}
+          goldToSpendThisTurn={goldToSpendThisTurn}
         />
       ) : null}
     </>

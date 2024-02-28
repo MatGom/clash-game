@@ -4,22 +4,22 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFortAwesome } from '@fortawesome/free-brands-svg-icons';
 import { faCoins } from '@fortawesome/free-solid-svg-icons';
 
-const CastleModal = ({ castleStats, upgradeCastle, cancelCastle }) => {
+const CastleModal = ({ castle, upgradeCastle, cancelCastle, goldToSpendThisTurn }) => {
   return (
     <div className={styles.castleModal}>
       <div className={styles.castleHeader}>
         <h2 className={styles.castleTitle}>Castle</h2>
-        <h3 className={styles.castleLevel}>Level {castleStats.level}</h3>
+        <h3 className={styles.castleLevel}>Level {castle.level}</h3>
       </div>
       <FontAwesomeIcon className={styles.castleIcon} icon={faFortAwesome} />
       <div className={styles.castleInfo}>
         <div className={styles.castleCurrentLevel}>
-          <p>Current level ({castleStats.level})</p>
-          <p>{castleStats.gold} gold per turn</p>
+          <p>Current level ({castle.level})</p>
+          <p>{castle.gold} gold per turn</p>
         </div>
         <div className={styles.castleNextLevel}>
-          <p>Next level ({castleStats.level + 1})</p>
-          <p>{castleStats.gold + 50} gold per turn</p>
+          <p>Next level ({castle.level + 1})</p>
+          <p>{castle.gold + 50} gold per turn</p>
         </div>
       </div>
       <div className={styles.castleUpgradeWrapper}>
@@ -34,7 +34,7 @@ const CastleModal = ({ castleStats, upgradeCastle, cancelCastle }) => {
           Cancel
         </button>
       </div>
-      <p>Gold to spend this turn 100</p>
+      <p>Gold to spend this turn {goldToSpendThisTurn}</p>
     </div>
   );
 };

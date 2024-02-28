@@ -1,21 +1,27 @@
 import styles from './CampModal.module.scss';
 
 import { units } from '../data/units-data';
+import { useSelector } from 'react-redux';
 
 import UnitCard from './UnitCard';
 
-const CampModal = ({ saveCamp, cancelCamp, attack, defence, name }) => {
+const CampModal = ({ campId, saveCamp, cancelCamp, name, goldToSpendThisTurn }) => {
+  const campAttack = useSelector(state => state.totalCampAttack.totalCampAttack[campId]);
+  const campDefence = useSelector(state => state.totalCampDefence.totalCampDefence[campId]);
+
   return (
     <div className={styles.campModal}>
       <h2 className={styles.campName}>{name}</h2>
       <div className={styles.campStats}>
-        <p>Attack {attack}</p>
-        <p>Defence {defence}</p>
+        <p>Attack {campAttack}</p>
+        <p>Defence {campDefence}</p>
       </div>
       <div className={styles.unitsWrapper}>
         {units.map(unit => (
           <UnitCard
             key={unit.id}
+            unitId={unit.id}
+            campId={campId}
             name={unit.name}
             icon={unit.icon}
             attack={unit.attack}
@@ -24,7 +30,7 @@ const CampModal = ({ saveCamp, cancelCamp, attack, defence, name }) => {
           />
         ))}
       </div>
-      <p className={styles.goldThisTurn}>Gold to spend this turn 100</p>
+      <p className={styles.goldThisTurn}>Gold to spend this turn {goldToSpendThisTurn}</p>
       <div className={styles.buttons}>
         <button className={styles.save} onClick={saveCamp}>
           Save

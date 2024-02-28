@@ -1,5 +1,7 @@
-import { useSelector } from 'react-redux';
 import styles from './Game.module.scss';
+
+import { useSelector } from 'react-redux';
+import { useState } from 'react';
 
 import Player from './Player';
 import Settings from './Settings';
@@ -10,6 +12,7 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame }) => {
   const { totalCampAttack } = useSelector(state => state.totalCampAttack);
   const { totalCampDefence } = useSelector(state => state.totalCampDefence);
   const { goldPerTurn } = useSelector(state => state.goldPerTurn);
+  const [goldToSpendThisTurn, setGoldToSpendThisTurn] = useState(100);
 
   const players = [
     {
@@ -17,54 +20,62 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame }) => {
       name: playerOneName,
       playerClass: 'player-one',
       gold: totalGold,
-      castleStats: {
+      goldToSpendThisTurn: goldToSpendThisTurn,
+      castle: {
         level: castleLevel,
         gold: goldPerTurn,
       },
-      campStats: {
-        campOne: {
+      camps: [
+        {
+          id: 'player1camp1',
           name: 'Camp 1',
-          attack: totalCampAttack,
-          defence: totalCampDefence,
+          attack: totalCampAttack.player1camp1,
+          defence: totalCampDefence.player1camp1,
         },
-        campTwo: {
+        {
+          id: 'player1camp2',
           name: 'Camp 2',
-          attack: totalCampAttack,
-          defence: totalCampDefence,
+          attack: totalCampAttack.player1camp2,
+          defence: totalCampDefence.player1camp2,
         },
-        campThree: {
+        {
+          id: 'player1camp3',
           name: 'Camp 3',
-          attack: totalCampAttack,
-          defence: totalCampDefence,
+          attack: totalCampAttack.player1camp3,
+          defence: totalCampDefence.player1camp3,
         },
-      },
+      ],
     },
     {
       id: 'playerTwo',
       name: playerTwoName,
       playerClass: 'player-two',
       gold: totalGold,
-      castleStats: {
+      goldToSpendThisTurn: goldToSpendThisTurn,
+      castle: {
         level: castleLevel,
         gold: goldPerTurn,
       },
-      campStats: {
-        campOne: {
+      camps: [
+        {
+          id: 'player2camp1',
           name: 'Camp 1',
-          attack: totalCampAttack,
-          defence: totalCampDefence,
+          attack: totalCampAttack.player2camp1,
+          defence: totalCampDefence.player2camp1,
         },
-        campTwo: {
+        {
+          id: 'player2camp2',
           name: 'Camp 2',
-          attack: totalCampAttack,
-          defence: totalCampDefence,
+          attack: totalCampAttack.player2camp2,
+          defence: totalCampDefence.player2camp2,
         },
-        campThree: {
+        {
+          id: 'player2camp3',
           name: 'Camp 3',
-          attack: totalCampAttack,
-          defence: totalCampDefence,
+          attack: totalCampAttack.player2camp3,
+          defence: totalCampDefence.player2camp3,
         },
-      },
+      ],
     },
   ];
 
@@ -76,8 +87,9 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame }) => {
           playerClass={player.playerClass}
           name={player.name}
           gold={player.gold}
-          castleStats={player.castleStats}
-          campStats={player.campStats}
+          goldToSpendThisTurn={player.goldToSpendThisTurn}
+          castle={player.castle}
+          camps={player.camps}
         />
       ))}
       <Settings showRulesModal={showRulesModal} endGame={endGame} />

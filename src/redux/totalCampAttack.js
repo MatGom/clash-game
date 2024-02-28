@@ -3,15 +3,26 @@ import { createSlice } from '@reduxjs/toolkit';
 export const totalCampAttackSlice = createSlice({
   name: 'totalCampAttack',
   initialState: {
-    totalCampAttack: 0,
+    totalCampAttack: {
+      player1camp1: 0,
+      player1camp2: 0,
+      player1camp3: 0,
+      player2camp1: 0,
+      player2camp2: 0,
+      player2camp3: 0,
+    },
   },
   reducers: {
-    incrementByAmount: (state, action) => {
-      state.totalCampAttack += action.payload;
+    incrementAttack: (state, action) => {
+      const { campId, attack } = action.payload;
+      if (state.totalCampAttack[campId] === undefined) {
+        state.totalCampAttack[campId] = 0;
+      }
+      state.totalCampAttack[campId] += attack;
     },
   },
 });
 
-export const { incrementByAmount } = totalCampAttackSlice.actions;
+export const { incrementAttack } = totalCampAttackSlice.actions;
 
 export default totalCampAttackSlice.reducer;
