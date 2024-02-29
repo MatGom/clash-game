@@ -12,17 +12,21 @@
   align-items: center;
 }
 
-.player-one {
+.player {
   display: flex;
   flex-direction: column-reverse;
 }
 
-.player-two {
-  display: flex;
+.player-inactive {
   flex-direction: column;
 }
 
-.player-one .camp {
+.player .camp {
   flex-direction: column-reverse;
   margin: -10px auto;
+}
+
+.player-inactive.player .camp {
+  flex-direction: column;
+  margin: 10px auto;
 }

@@ -20,6 +20,7 @@ const Start = () => {
   };
 
   const handleEndGame = () => {
+    alert('Game Over! Thanks for playing.');
     setGameIsOn(false);
   };
 
