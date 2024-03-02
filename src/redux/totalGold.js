@@ -16,9 +16,15 @@ export const totalGoldSlice = createSlice({
         state.players[playerId].totalGold -= amount;
       }
     },
+    updateTotalGold: (state, action) => {
+      const { playerId, goldPerTurn } = action.payload;
+      if (state.players[playerId]) {
+        state.players[playerId].totalGold += goldPerTurn;
+      }
+    },
   },
 });
 
-export const { decreaseTotalGold } = totalGoldSlice.actions;
+export const { decreaseTotalGold, updateTotalGold } = totalGoldSlice.actions;
 
 export default totalGoldSlice.reducer;

@@ -6,6 +6,7 @@ import Settings from './Settings';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { resetGoldToSpendThisTurn } from '../redux/goldToSpendThisTurn';
+import { updateTotalGold } from '../redux/totalGold';
 
 const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame }) => {
   const [currentPlayer, setCurrentPlayer] = useState('playerOne');
@@ -89,6 +90,9 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame }) => {
     setCurrentPlayer(nextPlayerId);
 
     if (currentPlayer === 'playerTwo') {
+      dispatch(updateTotalGold({ playerId: 'playerOne', goldPerTurn: playerOneGoldPerTurn }));
+      dispatch(updateTotalGold({ playerId: 'playerTwo', goldPerTurn: playerTwoGoldPerTurn }));
+
       setTurnNumber(turn => turn + 1);
     }
   };
