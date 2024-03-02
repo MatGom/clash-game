@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './Game.module.scss';
 
 import Player from './Player';
@@ -17,6 +17,9 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame }) => {
 
   const playerOneGoldPerTurn = useSelector(state => state.goldPerTurn.players.playerOne.goldPerTurn);
   const playerTwoGoldPerTurn = useSelector(state => state.goldPerTurn.players.playerTwo.goldPerTurn);
+
+  const playerOneTotalGold = useSelector(state => state.totalGold.players.playerOne.totalGold);
+  const playerTwoTotalGold = useSelector(state => state.totalGold.players.playerTwo.totalGold);
 
   let playerOneClasses;
   let playerTwoClasses;
@@ -69,6 +72,16 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame }) => {
       ],
     },
   ];
+
+  useEffect(() => {
+    if (playerOneTotalGold <= 0) {
+      alert(`${playerOneName} lost!`);
+      endGame();
+    } else if (playerTwoTotalGold <= 0) {
+      alert(`${playerTwoName} lost!`);
+      endGame();
+    }
+  }, [playerOneTotalGold, playerTwoTotalGold, playerOneName, playerTwoName, endGame]);
 
   const handleStartTurn = () => {
     setIsTurnStart(false);
