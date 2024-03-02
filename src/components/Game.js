@@ -4,10 +4,18 @@ import styles from './Game.module.scss';
 import Player from './Player';
 import Settings from './Settings';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { resetGoldToSpendThisTurn } from '../redux/goldToSpendThisTurn';
+
 const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame }) => {
   const [currentPlayer, setCurrentPlayer] = useState('playerOne');
   const [turnNumber, setTurnNumber] = useState(1);
   const [isTurnStart, setIsTurnStart] = useState(true);
+
+  const dispatch = useDispatch();
+
+  const playerOneGoldPerTurn = useSelector(state => state.goldPerTurn.players.playerOne.goldPerTurn);
+  const playerTwoGoldPerTurn = useSelector(state => state.goldPerTurn.players.playerTwo.goldPerTurn);
 
   let playerOneClasses;
   let playerTwoClasses;
@@ -68,12 +76,17 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame }) => {
   const handleEndTurn = () => {
     setIsTurnStart(true);
 
+    const nextPlayerId = currentPlayer === 'playerOne' ? 'playerTwo' : 'playerOne';
+    const nextPlayerGoldPerTurn = nextPlayerId === 'playerOne' ? playerOneGoldPerTurn : playerTwoGoldPerTurn;
+
+    dispatch(resetGoldToSpendThisTurn({ playerId: nextPlayerId, goldPerTurn: nextPlayerGoldPerTurn }));
+
     if (currentPlayer === 'playerTwo' && turnNumber === 10) {
       endGame();
       return;
     }
 
-    setCurrentPlayer(current => (current === 'playerOne' ? 'playerTwo' : 'playerOne'));
+    setCurrentPlayer(nextPlayerId);
 
     if (currentPlayer === 'playerTwo') {
       setTurnNumber(turn => turn + 1);

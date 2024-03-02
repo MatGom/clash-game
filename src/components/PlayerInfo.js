@@ -34,7 +34,7 @@ const PlayerInfo = ({ playerId, name }) => {
       dispatch(decreaseTotalGold({ playerId, amount: castleCost }));
       dispatch(upgradeCastleLevel({ playerId }));
       dispatch(upgradeGoldPerTurn({ playerId }));
-      // dispatch(upgradeGoldToSpendThisTurn({ playerId }));
+      dispatch(upgradeGoldToSpendThisTurn({ playerId }));
     } else {
       alert('No more gold!');
     }
