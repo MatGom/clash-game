@@ -22,9 +22,16 @@ export const totalGoldSlice = createSlice({
         state.players[playerId].totalGold += goldPerTurn;
       }
     },
+    transferGold: (state, action) => {
+      const { winnerId, loserId, amount } = action.payload;
+      if (state.players[winnerId] && state.players[loserId]) {
+        state.players[winnerId].totalGold += amount;
+        state.players[loserId].totalGold -= amount;
+      }
+    },
   },
 });
 
-export const { decreaseTotalGold, updateTotalGold } = totalGoldSlice.actions;
+export const { decreaseTotalGold, updateTotalGold, transferGold } = totalGoldSlice.actions;
 
 export default totalGoldSlice.reducer;

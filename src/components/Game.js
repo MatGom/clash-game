@@ -6,7 +6,7 @@ import Settings from './Settings';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { resetGoldToSpendThisTurn } from '../redux/goldToSpendThisTurn';
-import { updateTotalGold } from '../redux/totalGold';
+import { updateTotalGold, transferGold } from '../redux/totalGold';
 
 const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame }) => {
   const [currentPlayer, setCurrentPlayer] = useState('playerOne');
@@ -83,6 +83,70 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame }) => {
     }
   }, [playerOneTotalGold, playerTwoTotalGold, playerOneName, playerTwoName, endGame]);
 
+  const camps = {
+    playerOne: [
+      {
+        totalAttack: useSelector(state => state.totalCampAttack.totalCampAttack.player1camp1),
+        totalDefense: useSelector(state => state.totalCampDefence.totalCampDefence.player1camp1),
+      },
+      {
+        totalAttack: useSelector(state => state.totalCampAttack.totalCampAttack.player1camp2),
+        totalDefense: useSelector(state => state.totalCampDefence.totalCampDefence.player1camp2),
+      },
+      {
+        totalAttack: useSelector(state => state.totalCampAttack.totalCampAttack.player1camp3),
+        totalDefense: useSelector(state => state.totalCampDefence.totalCampDefence.player1camp3),
+      },
+    ],
+    playerTwo: [
+      {
+        totalAttack: useSelector(state => state.totalCampAttack.totalCampAttack.player2camp1),
+        totalDefense: useSelector(state => state.totalCampDefence.totalCampDefence.player2camp1),
+      },
+      {
+        totalAttack: useSelector(state => state.totalCampAttack.totalCampAttack.player2camp2),
+        totalDefense: useSelector(state => state.totalCampDefence.totalCampDefence.player2camp2),
+      },
+      {
+        totalAttack: useSelector(state => state.totalCampAttack.totalCampAttack.player2camp3),
+        totalDefense: useSelector(state => state.totalCampDefence.totalCampDefence.player2camp3),
+      },
+    ],
+  };
+
+  const performBattlePhase = () => {
+    let playerOneVictories = 0;
+    let playerTwoVictories = 0;
+
+    camps.playerOne.forEach((camp, index) => {
+      const opponentCamp = camps.playerTwo[index];
+      if (camp.totalAttack > opponentCamp.totalDefense) {
+        console.log(`Player One wins Camp ${index + 1}`);
+        playerOneVictories += 1;
+      } else if (opponentCamp.totalAttack > camp.totalDefense) {
+        console.log(`Player Two wins Camp ${index + 1}`);
+        playerTwoVictories += 1;
+      } else {
+        console.log(`Camp ${index + 1} is a draw`);
+      }
+    });
+
+    const playerOneTransferPercentage = playerOneVictories * 10;
+    const playerTwoTransferPercentage = playerTwoVictories * 10;
+
+    if (playerOneVictories > playerTwoVictories) {
+      const amountToTransfer = Math.round(playerTwoTotalGold * (playerOneTransferPercentage / 100));
+      dispatch(transferGold({ winnerId: 'playerOne', loserId: 'playerTwo', amount: amountToTransfer }));
+      console.log(`Player One Wins and takes ${playerOneTransferPercentage}% gold`);
+    } else if (playerTwoVictories > playerOneVictories) {
+      const amountToTransfer = Math.round(playerOneTotalGold * (playerTwoTransferPercentage / 100));
+      dispatch(transferGold({ winnerId: 'playerTwo', loserId: 'playerOne', amount: amountToTransfer }));
+      console.log(`Player Two Wins and takes ${playerTwoTransferPercentage}% gold`);
+    } else {
+      console.log('The overall battle phase ends in a draw');
+    }
+  };
+
   const handleStartTurn = () => {
     setIsTurnStart(false);
   };
@@ -103,8 +167,15 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame }) => {
     setCurrentPlayer(nextPlayerId);
 
     if (currentPlayer === 'playerTwo') {
+      performBattlePhase();
+
       dispatch(updateTotalGold({ playerId: 'playerOne', goldPerTurn: playerOneGoldPerTurn }));
       dispatch(updateTotalGold({ playerId: 'playerTwo', goldPerTurn: playerTwoGoldPerTurn }));
+
+      if (playerOneTotalGold <= 0 || playerTwoTotalGold <= 0) {
+        endGame();
+        return;
+      }
 
       setTurnNumber(turn => turn + 1);
     }
