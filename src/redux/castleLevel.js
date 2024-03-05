@@ -1,13 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const initialState = {
+  players: {
+    playerOne: { castleLevel: 1 },
+    playerTwo: { castleLevel: 1 },
+  },
+};
+
 export const castleLevelSlice = createSlice({
   name: 'castleLevel',
-  initialState: {
-    players: {
-      playerOne: { castleLevel: 1 },
-      playerTwo: { castleLevel: 1 },
-    },
-  },
+  initialState,
   reducers: {
     upgradeCastleLevel: (state, action) => {
       const { playerId } = action.payload;
@@ -15,9 +17,10 @@ export const castleLevelSlice = createSlice({
         state.players[playerId].castleLevel += 1;
       }
     },
+    resetCastleLevel: () => initialState,
   },
 });
 
-export const { upgradeCastleLevel } = castleLevelSlice.actions;
+export const { upgradeCastleLevel, resetCastleLevel } = castleLevelSlice.actions;
 
 export default castleLevelSlice.reducer;

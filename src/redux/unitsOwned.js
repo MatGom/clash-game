@@ -1,47 +1,49 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-export const unitsOwnedSlice = createSlice({
-  name: 'unitsOwned',
-  initialState: {
-    camps: {
-      playerOneCampOne: {
-        unit1: 0,
-        unit2: 0,
-        unit3: 0,
-        unit4: 0,
-      },
-      playerOneCampTwo: {
-        unit1: 0,
-        unit2: 0,
-        unit3: 0,
-        unit4: 0,
-      },
-      playerOneCampThree: {
-        unit1: 0,
-        unit2: 0,
-        unit3: 0,
-        unit4: 0,
-      },
-      playerTwoCampOne: {
-        unit1: 0,
-        unit2: 0,
-        unit3: 0,
-        unit4: 0,
-      },
-      playerTwoCampTwo: {
-        unit1: 0,
-        unit2: 0,
-        unit3: 0,
-        unit4: 0,
-      },
-      playerTwoCampThree: {
-        unit1: 0,
-        unit2: 0,
-        unit3: 0,
-        unit4: 0,
-      },
+const initialState = {
+  camps: {
+    playerOneCampOne: {
+      unit1: 0,
+      unit2: 0,
+      unit3: 0,
+      unit4: 0,
+    },
+    playerOneCampTwo: {
+      unit1: 0,
+      unit2: 0,
+      unit3: 0,
+      unit4: 0,
+    },
+    playerOneCampThree: {
+      unit1: 0,
+      unit2: 0,
+      unit3: 0,
+      unit4: 0,
+    },
+    playerTwoCampOne: {
+      unit1: 0,
+      unit2: 0,
+      unit3: 0,
+      unit4: 0,
+    },
+    playerTwoCampTwo: {
+      unit1: 0,
+      unit2: 0,
+      unit3: 0,
+      unit4: 0,
+    },
+    playerTwoCampThree: {
+      unit1: 0,
+      unit2: 0,
+      unit3: 0,
+      unit4: 0,
     },
   },
+};
+
+export const unitsOwnedSlice = createSlice({
+  name: 'unitsOwned',
+  initialState,
   reducers: {
     increaseOwned: (state, action) => {
       const { campId, unitId } = action.payload;
@@ -53,9 +55,10 @@ export const unitsOwnedSlice = createSlice({
       }
       state.camps[campId][unitId] += 1;
     },
+    resetUnitsOwned: () => initialState,
   },
 });
 
-export const { increaseOwned } = unitsOwnedSlice.actions;
+export const { increaseOwned, resetUnitsOwned } = unitsOwnedSlice.actions;
 
 export default unitsOwnedSlice.reducer;

@@ -1,13 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const initialState = {
+  players: {
+    playerOne: { totalGold: 1000 },
+    playerTwo: { totalGold: 1000 },
+  },
+};
+
 export const totalGoldSlice = createSlice({
   name: 'totalGold',
-  initialState: {
-    players: {
-      playerOne: { totalGold: 1000 },
-      playerTwo: { totalGold: 1000 },
-    },
-  },
+  initialState,
   reducers: {
     decreaseTotalGold: (state, action) => {
       const { playerId, amount } = action.payload;
@@ -29,9 +31,10 @@ export const totalGoldSlice = createSlice({
         state.players[loserId].totalGold -= amount;
       }
     },
+    resetTotalGold: () => initialState,
   },
 });
 
-export const { decreaseTotalGold, updateTotalGold, transferGold } = totalGoldSlice.actions;
+export const { decreaseTotalGold, updateTotalGold, transferGold, resetTotalGold } = totalGoldSlice.actions;
 
 export default totalGoldSlice.reducer;

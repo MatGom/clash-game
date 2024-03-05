@@ -1,13 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const initialState = {
+  players: {
+    playerOne: { goldToSpendThisTurn: 100 },
+    playerTwo: { goldToSpendThisTurn: 100 },
+  },
+};
+
 export const goldToSpendThisTurnSlice = createSlice({
   name: 'goldToSpendThisTurn',
-  initialState: {
-    players: {
-      playerOne: { goldToSpendThisTurn: 100 },
-      playerTwo: { goldToSpendThisTurn: 100 },
-    },
-  },
+  initialState,
   reducers: {
     upgradeGoldToSpendThisTurn: (state, action) => {
       const { playerId } = action.payload;
@@ -21,14 +23,19 @@ export const goldToSpendThisTurnSlice = createSlice({
         state.players[playerId].goldToSpendThisTurn -= amount;
       }
     },
-    resetGoldToSpendThisTurn: (state, action) => {
+    renewGoldToSpendThisTurn: (state, action) => {
       const { playerId, goldPerTurn } = action.payload;
       state.players[playerId].goldToSpendThisTurn = goldPerTurn;
     },
+    resetGoldToSpendThisTurn: () => initialState,
   },
 });
 
-export const { upgradeGoldToSpendThisTurn, decreaseGoldToSpendThisTurn, resetGoldToSpendThisTurn } =
-  goldToSpendThisTurnSlice.actions;
+export const {
+  upgradeGoldToSpendThisTurn,
+  decreaseGoldToSpendThisTurn,
+  renewGoldToSpendThisTurn,
+  resetGoldToSpendThisTurn,
+} = goldToSpendThisTurnSlice.actions;
 
 export default goldToSpendThisTurnSlice.reducer;

@@ -1,17 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const initialState = {
+  totalCampAttack: {
+    player1camp1: 0,
+    player1camp2: 0,
+    player1camp3: 0,
+    player2camp1: 0,
+    player2camp2: 0,
+    player2camp3: 0,
+  },
+};
+
 export const totalCampAttackSlice = createSlice({
   name: 'totalCampAttack',
-  initialState: {
-    totalCampAttack: {
-      player1camp1: 0,
-      player1camp2: 0,
-      player1camp3: 0,
-      player2camp1: 0,
-      player2camp2: 0,
-      player2camp3: 0,
-    },
-  },
+  initialState,
   reducers: {
     increaseAttack: (state, action) => {
       const { campId, attack } = action.payload;
@@ -20,9 +22,10 @@ export const totalCampAttackSlice = createSlice({
       }
       state.totalCampAttack[campId] += attack;
     },
+    resetTotalCampAttack: () => initialState,
   },
 });
 
-export const { increaseAttack } = totalCampAttackSlice.actions;
+export const { increaseAttack, resetTotalCampAttack } = totalCampAttackSlice.actions;
 
 export default totalCampAttackSlice.reducer;
