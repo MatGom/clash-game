@@ -6,11 +6,9 @@ import styles from './Start.module.scss';
 import Game from './Game';
 import RulesModal from './RulesModal';
 import { resetCastle } from '../redux/castleStateSlice';
-import { resetGoldPerTurn } from '../redux/goldPerTurn';
-import { resetGoldToSpendPerTurn } from '../redux/goldToSpendPerTurn';
+import { resetGold } from '../redux/goldStateSlice';
 import { resetTotalCampAttack } from '../redux/totalCampAttack';
 import { resetTotalCampDefence } from '../redux/totalCampDefence';
-import { resetTotalGold } from '../redux/totalGold';
 import { resetUnitsOwned } from '../redux/unitsOwned';
 
 const Start = () => {
@@ -40,12 +38,11 @@ const Start = () => {
     setRulesModalIsOpen(false);
 
     dispatch(resetCastle());
-    dispatch(resetGoldPerTurn());
-    dispatch(resetGoldToSpendPerTurn());
+    dispatch(resetGold());
     dispatch(resetTotalCampAttack());
     dispatch(resetTotalCampDefence());
-    dispatch(resetTotalGold());
     dispatch(resetUnitsOwned());
+
     setGameIsOn(false);
   };
 

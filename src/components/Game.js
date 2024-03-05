@@ -7,8 +7,7 @@ import EndTurnScore from './EndTurnScore';
 import GameResultsModal from './GameResultsModal';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { renewGoldToSpendNextTurn } from '../redux/goldToSpendPerTurn';
-import { updateTotalGold, transferGold } from '../redux/totalGold';
+import { updateTotalGold, transferGold, setGoldToSpendNextTurn } from '../redux/goldStateSlice';
 
 import { settings } from '../data/settings';
 import StartTurnModal from './StartTurnModal';
@@ -29,11 +28,11 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame, resetGame
 
   const dispatch = useDispatch();
 
-  const playerOneGoldPerTurn = useSelector(state => state.goldPerTurn.players.playerOne.goldPerTurn);
-  const playerTwoGoldPerTurn = useSelector(state => state.goldPerTurn.players.playerTwo.goldPerTurn);
+  const playerOneGoldIncome = useSelector(state => state.goldState.players.playerOne.goldIncome);
+  const playerTwoGoldIncome = useSelector(state => state.goldState.players.playerTwo.goldIncome);
 
-  const playerOneTotalGold = useSelector(state => state.totalGold.players.playerOne.totalGold);
-  const playerTwoTotalGold = useSelector(state => state.totalGold.players.playerTwo.totalGold);
+  const playerOneTotalGold = useSelector(state => state.goldState.players.playerOne.totalGold);
+  const playerTwoTotalGold = useSelector(state => state.goldState.players.playerTwo.totalGold);
 
   let playerOneClasses;
   let playerTwoClasses;
@@ -188,11 +187,11 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame, resetGame
 
     setCurrentPlayer('playerOne');
 
-    dispatch(updateTotalGold({ playerId: 'playerOne', goldPerTurn: playerOneGoldPerTurn }));
-    dispatch(updateTotalGold({ playerId: 'playerTwo', goldPerTurn: playerTwoGoldPerTurn }));
+    dispatch(updateTotalGold({ playerId: 'playerOne', goldIncome: playerOneGoldIncome }));
+    dispatch(updateTotalGold({ playerId: 'playerTwo', goldIncome: playerTwoGoldIncome }));
 
-    dispatch(renewGoldToSpendNextTurn({ playerId: 'playerOne' }));
-    dispatch(renewGoldToSpendNextTurn({ playerId: 'playerTwo' }));
+    dispatch(setGoldToSpendNextTurn({ playerId: 'playerOne' }));
+    dispatch(setGoldToSpendNextTurn({ playerId: 'playerTwo' }));
   };
 
   const endTurn = () => {

@@ -8,7 +8,7 @@ import UnitCard from './UnitCard';
 const CampModal = ({ playerId, campId, saveCamp, cancelCamp, name }) => {
   const campAttack = useSelector(state => state.totalCampAttack.totalCampAttack[campId]);
   const campDefence = useSelector(state => state.totalCampDefence.totalCampDefence[campId]);
-  const goldToSpendThisTurn = useSelector(state => state.goldToSpendPerTurn.players[playerId]?.goldToSpendThisTurn);
+  const goldToSpendThisTurn = useSelector(state => state.goldState.players[playerId]?.goldToSpendThisTurn);
 
   return (
     <div className={styles.campModal}>

@@ -7,10 +7,7 @@ import { faFortAwesome } from '@fortawesome/free-brands-svg-icons';
 import { faCoins } from '@fortawesome/free-solid-svg-icons';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { upgradeGoldPerTurn } from '../redux/goldPerTurn';
-import { decreaseTotalGold } from '../redux/totalGold';
-import { upgradeGoldToSpendNextTurn, decreaseGoldToSpendThisTurn } from '../redux/goldToSpendPerTurn';
-
+import { upgradeGoldToSpendNextTurn, decreaseGoldToSpendThisTurn, decreaseTotalGold, upgradeGoldIncome } from '../redux/goldStateSlice';
 import { increaseCastleCost, upgradeCastleLevel } from '../redux/castleStateSlice';
 
 import CastleModal from './CastleModal';
@@ -20,8 +17,8 @@ const PlayerInfo = ({ playerId, name }) => {
 
   const castleLevel = useSelector(state => state.castleState.players[playerId]?.castleLevel);
   const castleCost = useSelector(state => state.castleState.players[playerId]?.castleCost);
-  const goldToSpendThisTurn = useSelector(state => state.goldToSpendPerTurn.players[playerId]?.goldToSpendThisTurn);
-  const totalGold = useSelector(state => state.totalGold.players[playerId]?.totalGold);
+  const goldToSpendThisTurn = useSelector(state => state.goldState.players[playerId]?.goldToSpendThisTurn);
+  const totalGold = useSelector(state => state.goldState.players[playerId]?.totalGold);
   const dispatch = useDispatch();
 
   const handleShowCastleModal = () => {
@@ -34,7 +31,7 @@ const PlayerInfo = ({ playerId, name }) => {
       dispatch(decreaseGoldToSpendThisTurn({ playerId, amount: castleCost }));
       dispatch(decreaseTotalGold({ playerId, amount: castleCost }));
       dispatch(upgradeCastleLevel({ playerId }));
-      dispatch(upgradeGoldPerTurn({ playerId }));
+      dispatch(upgradeGoldIncome({ playerId }));
       dispatch(upgradeGoldToSpendNextTurn({ playerId }));
     } else {
       alert('No more gold!');

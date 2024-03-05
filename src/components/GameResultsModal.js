@@ -3,8 +3,8 @@ import styles from './GameResultsModal.module.scss';
 import { useSelector } from 'react-redux';
 
 const GameResultsModal = ({ restartGame, playerOneName, playerTwoName }) => {
-  const playerOneTotalGold = useSelector(state => state.totalGold.players.playerOne.totalGold);
-  const playerTwoTotalGold = useSelector(state => state.totalGold.players.playerTwo.totalGold);
+  const playerOneTotalGold = useSelector(state => state.goldState.players.playerOne.totalGold);
+  const playerTwoTotalGold = useSelector(state => state.goldState.players.playerTwo.totalGold);
 
   let winnerMessage;
   if (playerOneTotalGold > playerTwoTotalGold) {

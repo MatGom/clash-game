@@ -7,12 +7,13 @@ import { faFortAwesome } from '@fortawesome/free-brands-svg-icons';
 import { faCoins } from '@fortawesome/free-solid-svg-icons';
 
 import { settings } from '../data/settings';
+
 const { gold } = settings;
 
 const CastleModal = ({ castleCost, playerId, upgradeCastle, closeCastle }) => {
   const castleLevel = useSelector(state => state.castleState.players[playerId]?.castleLevel);
-  const goldPerTurn = useSelector(state => state.goldPerTurn.players[playerId]?.goldPerTurn);
-  const goldToSpendThisTurn = useSelector(state => state.goldToSpendPerTurn.players[playerId]?.goldToSpendThisTurn);
+  const goldIncome = useSelector(state => state.goldState.players[playerId]?.goldIncome);
+  const goldToSpendThisTurn = useSelector(state => state.goldState.players[playerId]?.goldToSpendThisTurn);
 
   return (
     <div className={styles.castleModal}>
@@ -24,11 +25,11 @@ const CastleModal = ({ castleCost, playerId, upgradeCastle, closeCastle }) => {
       <div className={styles.castleInfo}>
         <div className={styles.castleCurrentLevel}>
           <p>Current level ({castleLevel})</p>
-          <p>Total income per turn {goldPerTurn}g</p>
+          <p>Total income per turn {goldIncome}g</p>
         </div>
         <div className={styles.castleNextLevel}>
           <p>Next level ({castleLevel + 1})</p>
-          <p>Total income per turn {goldPerTurn + gold.income.increaseBy}g</p>
+          <p>Total income per turn {goldIncome + gold.income.increaseBy}g</p>
           <p>Increase gold limit to spend per turn by {gold.limit.nextTurn.increaseBy}</p>
         </div>
       </div>
