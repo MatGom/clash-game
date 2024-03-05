@@ -5,11 +5,11 @@ import { increaseOwned } from '../redux/unitsOwned';
 import { increaseAttack } from '../redux/totalCampAttack';
 import { increaseDefence } from '../redux/totalCampDefence';
 import { decreaseTotalGold } from '../redux/totalGold';
-import { decreaseGoldToSpendThisTurn } from '../redux/goldToSpendThisTurn';
+import { decreaseGoldToSpendThisTurn } from '../redux/goldToSpendPerTurn';
 
 const UnitCard = ({ playerId, campId, unitId, name, icon, attack, defence, cost }) => {
   const unitsOwned = useSelector(state => state.unitsOwned.camps[campId]?.[unitId]) || 0;
-  const goldToSpendThisTurn = useSelector(state => state.goldToSpendThisTurn.players[playerId]?.goldToSpendThisTurn);
+  const goldToSpendThisTurn = useSelector(state => state.goldToSpendPerTurn.players[playerId]?.goldToSpendThisTurn);
 
   const dispatch = useDispatch();
 

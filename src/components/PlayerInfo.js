@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { upgradeCastleLevel } from '../redux/castleLevel';
 import { upgradeGoldPerTurn } from '../redux/goldPerTurn';
 import { decreaseTotalGold } from '../redux/totalGold';
-import { upgradeGoldToSpendThisTurn, decreaseGoldToSpendThisTurn } from '../redux/goldToSpendThisTurn';
+import { upgradeGoldToSpendNextTurn, decreaseGoldToSpendThisTurn } from '../redux/goldToSpendPerTurn';
 import { increaseCastleCost } from '../redux/castleCost';
 
 import CastleModal from './CastleModal';
@@ -19,7 +19,7 @@ const PlayerInfo = ({ playerId, name }) => {
   const [castleModalIsOpen, setCastleModalIsOpen] = useState(false);
 
   const castleLevel = useSelector(state => state.castleLevel.players[playerId]?.castleLevel);
-  const goldToSpendThisTurn = useSelector(state => state.goldToSpendThisTurn.players[playerId]?.goldToSpendThisTurn);
+  const goldToSpendThisTurn = useSelector(state => state.goldToSpendPerTurn.players[playerId]?.goldToSpendThisTurn);
   const totalGold = useSelector(state => state.totalGold.players[playerId]?.totalGold);
   const castleCost = useSelector(state => state.castleCost.players[playerId]?.castleCost);
   const dispatch = useDispatch();
@@ -35,7 +35,7 @@ const PlayerInfo = ({ playerId, name }) => {
       dispatch(decreaseTotalGold({ playerId, amount: castleCost }));
       dispatch(upgradeCastleLevel({ playerId }));
       dispatch(upgradeGoldPerTurn({ playerId }));
-      dispatch(upgradeGoldToSpendThisTurn({ playerId }));
+      dispatch(upgradeGoldToSpendNextTurn({ playerId }));
     } else {
       alert('No more gold!');
     }

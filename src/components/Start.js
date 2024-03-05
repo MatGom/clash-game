@@ -8,7 +8,7 @@ import RulesModal from './RulesModal';
 import { resetCastleCost } from '../redux/castleCost';
 import { resetCastleLevel } from '../redux/castleLevel';
 import { resetGoldPerTurn } from '../redux/goldPerTurn';
-import { resetGoldToSpendThisTurn } from '../redux/goldToSpendThisTurn';
+import { resetGoldToSpendPerTurn } from '../redux/goldToSpendPerTurn';
 import { resetTotalCampAttack } from '../redux/totalCampAttack';
 import { resetTotalCampDefence } from '../redux/totalCampDefence';
 import { resetTotalGold } from '../redux/totalGold';
@@ -43,7 +43,7 @@ const Start = () => {
     dispatch(resetCastleCost());
     dispatch(resetCastleLevel());
     dispatch(resetGoldPerTurn());
-    dispatch(resetGoldToSpendThisTurn());
+    dispatch(resetGoldToSpendPerTurn());
     dispatch(resetTotalCampAttack());
     dispatch(resetTotalCampDefence());
     dispatch(resetTotalGold());

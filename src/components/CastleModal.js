@@ -9,7 +9,7 @@ import { faCoins } from '@fortawesome/free-solid-svg-icons';
 const CastleModal = ({ castleCost, playerId, upgradeCastle, cancelCastle }) => {
   const castleLevel = useSelector(state => state.castleLevel.players[playerId]?.castleLevel);
   const goldPerTurn = useSelector(state => state.goldPerTurn.players[playerId]?.goldPerTurn);
-  const goldToSpendThisTurn = useSelector(state => state.goldToSpendThisTurn.players[playerId]?.goldToSpendThisTurn);
+  const goldToSpendThisTurn = useSelector(state => state.goldToSpendPerTurn.players[playerId]?.goldToSpendThisTurn);
 
   return (
     <div className={styles.castleModal}>

@@ -7,7 +7,7 @@ import EndTurnScore from './EndTurnScore';
 import GameResultsModal from './GameResultsModal';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { renewGoldToSpendThisTurn } from '../redux/goldToSpendThisTurn';
+import { renewGoldToSpendNextTurn } from '../redux/goldToSpendPerTurn';
 import { updateTotalGold, transferGold } from '../redux/totalGold';
 
 const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame, resetGame }) => {
@@ -195,20 +195,15 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame, resetGame
 
     dispatch(updateTotalGold({ playerId: 'playerOne', goldPerTurn: playerOneGoldPerTurn }));
     dispatch(updateTotalGold({ playerId: 'playerTwo', goldPerTurn: playerTwoGoldPerTurn }));
+
+    dispatch(renewGoldToSpendNextTurn({ playerId: 'playerOne' }));
+    dispatch(renewGoldToSpendNextTurn({ playerId: 'playerTwo' }));
   };
 
   const endTurn = () => {
     setIsTurnStart(true);
 
     const nextPlayerId = currentPlayer === 'playerOne' ? 'playerTwo' : 'playerOne';
-    const nextPlayerGoldPerTurn = nextPlayerId === 'playerOne' ? playerOneGoldPerTurn : playerTwoGoldPerTurn;
-
-    dispatch(renewGoldToSpendThisTurn({ playerId: nextPlayerId, goldPerTurn: nextPlayerGoldPerTurn }));
-
-    if (currentPlayer === 'playerTwo' && turnNumber === 10) {
-      // endGame();
-      // return;
-    }
 
     setCurrentPlayer(nextPlayerId);
 
@@ -216,11 +211,6 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame, resetGame
       setShowInactiveOverlay(false);
       setIsTurnStart(false);
       performBattlePhase();
-
-      if (playerOneTotalGold <= 0 || playerTwoTotalGold <= 0) {
-        endGame();
-        return;
-      }
     }
   };
 
@@ -230,7 +220,7 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame, resetGame
 
   const restartGame = () => {
     setShowGameResultsModal(false);
-    resetGame()
+    resetGame();
   };
 
   return (
