@@ -3,6 +3,7 @@ import styles from './Game.module.scss';
 
 import Player from './Player';
 import Settings from './Settings';
+import EndTurnScore from './EndTurnScore';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { resetGoldToSpendThisTurn } from '../redux/goldToSpendThisTurn';
@@ -12,6 +13,13 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame }) => {
   const [currentPlayer, setCurrentPlayer] = useState('playerOne');
   const [turnNumber, setTurnNumber] = useState(1);
   const [isTurnStart, setIsTurnStart] = useState(true);
+  const [showBattleResults, setShowBattleResults] = useState(false);
+  const [campOneWinner, setCampOneWinner] = useState('');
+  const [campTwoWinner, setCampTwoWinner] = useState('');
+  const [campThreeWinner, setCampThreeWinner] = useState('');
+  const [endTurnOutcomeMessage, setEndTurnOutcomeMessage] = useState('');
+
+  const [showInactiveOverlay, setShowInactiveOverlay] = useState(true);
 
   const dispatch = useDispatch();
 
@@ -118,16 +126,26 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame }) => {
     let playerOneVictories = 0;
     let playerTwoVictories = 0;
 
+    setCampOneWinner('');
+    setCampTwoWinner('');
+    setCampThreeWinner('');
+
     camps.playerOne.forEach((camp, index) => {
       const opponentCamp = camps.playerTwo[index];
       if (camp.totalAttack > opponentCamp.totalDefense) {
-        console.log(`Player One wins Camp ${index + 1}`);
         playerOneVictories += 1;
+        if (index === 0) setCampOneWinner(playerOneName);
+        else if (index === 1) setCampTwoWinner(playerOneName);
+        else if (index === 2) setCampThreeWinner(playerOneName);
       } else if (opponentCamp.totalAttack > camp.totalDefense) {
-        console.log(`Player Two wins Camp ${index + 1}`);
         playerTwoVictories += 1;
+        if (index === 0) setCampOneWinner(playerTwoName);
+        else if (index === 1) setCampTwoWinner(playerTwoName);
+        else if (index === 2) setCampThreeWinner(playerTwoName);
       } else {
-        console.log(`Camp ${index + 1} is a draw`);
+        if (index === 0) setCampOneWinner('Draw');
+        else if (index === 1) setCampTwoWinner('Draw');
+        else if (index === 2) setCampThreeWinner('Draw');
       }
     });
 
@@ -137,21 +155,40 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame }) => {
     if (playerOneVictories > playerTwoVictories) {
       const amountToTransfer = Math.round(playerTwoTotalGold * (playerOneTransferPercentage / 100));
       dispatch(transferGold({ winnerId: 'playerOne', loserId: 'playerTwo', amount: amountToTransfer }));
-      console.log(`Player One Wins and takes ${playerOneTransferPercentage}% gold`);
+      setEndTurnOutcomeMessage(
+        `${playerOneName} wins and takes ${playerOneTransferPercentage}% of opponents total gold`
+      );
     } else if (playerTwoVictories > playerOneVictories) {
       const amountToTransfer = Math.round(playerOneTotalGold * (playerTwoTransferPercentage / 100));
       dispatch(transferGold({ winnerId: 'playerTwo', loserId: 'playerOne', amount: amountToTransfer }));
-      console.log(`Player Two Wins and takes ${playerTwoTransferPercentage}% gold`);
+      setEndTurnOutcomeMessage(
+        `${playerTwoName} wins and takes ${playerTwoTransferPercentage}% of opponents total gold`
+      );
     } else {
-      console.log('The overall battle phase ends in a draw');
+      setEndTurnOutcomeMessage('The battle ended in a draw');
     }
+
+    setShowBattleResults(true);
   };
 
-  const handleStartTurn = () => {
+  const startCurrentTurn = () => {
     setIsTurnStart(false);
   };
 
-  const handleEndTurn = () => {
+  const startNextTurn = () => {
+    setShowBattleResults(false);
+    setShowInactiveOverlay(true);
+    setIsTurnStart(true);
+
+    setTurnNumber(prevTurnNumber => prevTurnNumber + 1);
+
+    setCurrentPlayer('playerOne');
+
+    dispatch(updateTotalGold({ playerId: 'playerOne', goldPerTurn: playerOneGoldPerTurn }));
+    dispatch(updateTotalGold({ playerId: 'playerTwo', goldPerTurn: playerTwoGoldPerTurn }));
+  };
+
+  const endTurn = () => {
     setIsTurnStart(true);
 
     const nextPlayerId = currentPlayer === 'playerOne' ? 'playerTwo' : 'playerOne';
@@ -167,28 +204,25 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame }) => {
     setCurrentPlayer(nextPlayerId);
 
     if (currentPlayer === 'playerTwo') {
+      setShowInactiveOverlay(false);
+      setIsTurnStart(false);
       performBattlePhase();
-
-      dispatch(updateTotalGold({ playerId: 'playerOne', goldPerTurn: playerOneGoldPerTurn }));
-      dispatch(updateTotalGold({ playerId: 'playerTwo', goldPerTurn: playerTwoGoldPerTurn }));
 
       if (playerOneTotalGold <= 0 || playerTwoTotalGold <= 0) {
         endGame();
         return;
       }
-
-      setTurnNumber(turn => turn + 1);
     }
   };
 
   return (
     <div className={`${styles.game} ${currentPlayer === 'playerOne' ? styles.playerOneTurn : styles.playerTwoTurn}`}>
-      <div className={styles.hideInactive}></div>
+      {showInactiveOverlay && <div className={styles.hideInactive}></div>}
       {isTurnStart ? (
         <div className={styles.playerTurn}>
           <h2>{currentPlayer === 'playerOne' ? playerOneName : playerTwoName}</h2>
           <p>Turn {turnNumber}</p>
-          <button className={styles.startTurnButton} onClick={handleStartTurn}>
+          <button className={styles.startTurnButton} onClick={startCurrentTurn}>
             Start
           </button>
         </div>
@@ -202,12 +236,18 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame }) => {
           camps={player.camps}
         />
       ))}
-      <Settings
-        turnNumber={turnNumber}
-        showRulesModal={showRulesModal}
-        endGame={endGame}
-        handleEndTurn={handleEndTurn}
-      />
+      {showBattleResults ? (
+        <EndTurnScore
+          endTurnOutcomeMessage={endTurnOutcomeMessage}
+          turnNumber={turnNumber}
+          startNextTurn={startNextTurn}
+          campOneWinner={campOneWinner}
+          campTwoWinner={campTwoWinner}
+          campThreeWinner={campThreeWinner}
+        />
+      ) : (
+        <Settings turnNumber={turnNumber} showRulesModal={showRulesModal} endGame={endGame} endTurn={endTurn} />
+      )}
     </div>
   );
 };

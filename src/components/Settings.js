@@ -7,7 +7,7 @@ import { faCircleQuestion, faGear } from '@fortawesome/free-solid-svg-icons';
 
 import SettingsModal from './SettingsModal';
 
-const Settings = ({ turnNumber, handleEndTurn, showRulesModal, endGame }) => {
+const Settings = ({ turnNumber, endTurn, showRulesModal, endGame }) => {
   const [settingsModalIsOpen, setSettingsModalIsOpen] = useState(false);
 
   const handleShowSettingsModal = () => {
@@ -22,7 +22,7 @@ const Settings = ({ turnNumber, handleEndTurn, showRulesModal, endGame }) => {
     <>
       <div className={styles.settings}>
         <FontAwesomeIcon className={styles.rulesIcon} onClick={showRulesModal} icon={faCircleQuestion} />
-        <button className={styles.endTurnButton} onClick={handleEndTurn}>
+        <button className={styles.endTurnButton} onClick={endTurn}>
           End turn {turnNumber}
         </button>
         <FontAwesomeIcon className={styles.settingsIcon} onClick={handleShowSettingsModal} icon={faGear} />
