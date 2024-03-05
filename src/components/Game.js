@@ -4,6 +4,7 @@ import styles from './Game.module.scss';
 import Player from './Player';
 import Settings from './Settings';
 import EndTurnScore from './EndTurnScore';
+import GameResultsModal from './GameResultsModal';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { resetGoldToSpendThisTurn } from '../redux/goldToSpendThisTurn';
@@ -18,8 +19,8 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame }) => {
   const [campTwoWinner, setCampTwoWinner] = useState('');
   const [campThreeWinner, setCampThreeWinner] = useState('');
   const [endTurnOutcomeMessage, setEndTurnOutcomeMessage] = useState('');
-
   const [showInactiveOverlay, setShowInactiveOverlay] = useState(true);
+  const [showGameResultsModal, setShowGameResultsModal] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -205,8 +206,8 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame }) => {
     dispatch(resetGoldToSpendThisTurn({ playerId: nextPlayerId, goldPerTurn: nextPlayerGoldPerTurn }));
 
     if (currentPlayer === 'playerTwo' && turnNumber === 10) {
-      endGame();
-      return;
+      // endGame();
+      // return;
     }
 
     setCurrentPlayer(nextPlayerId);
@@ -221,6 +222,14 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame }) => {
         return;
       }
     }
+  };
+
+  const showGameResults = () => {
+    setShowGameResultsModal(true);
+  };
+
+  const restartGame = () => {
+    setShowGameResultsModal(false);
   };
 
   return (
@@ -248,6 +257,7 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame }) => {
         <EndTurnScore
           endTurnOutcomeMessage={endTurnOutcomeMessage}
           turnNumber={turnNumber}
+          showGameResults={showGameResults}
           startNextTurn={startNextTurn}
           campOneWinner={campOneWinner}
           campTwoWinner={campTwoWinner}
@@ -255,6 +265,9 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame }) => {
         />
       ) : (
         <Settings turnNumber={turnNumber} showRulesModal={showRulesModal} endGame={endGame} endTurn={endTurn} />
+      )}
+      {showGameResultsModal && (
+        <GameResultsModal restartGame={restartGame} playerOneName={playerOneName} playerTwoName={playerTwoName} />
       )}
     </div>
   );

@@ -3,11 +3,14 @@ import styles from './EndTurnScore.module.scss';
 const EndTurnScore = ({
   turnNumber,
   startNextTurn,
+  showGameResults,
   campOneWinner,
   campTwoWinner,
   campThreeWinner,
   endTurnOutcomeMessage,
 }) => {
+  const buttonText = turnNumber === 10 ? 'Show Game Results' : `New Turn (${turnNumber + 1})`;
+
   return (
     <div className={styles.endTurnScore}>
       <p>Turn {turnNumber} outcome</p>
@@ -17,7 +20,7 @@ const EndTurnScore = ({
         <p>{campTwoWinner === 'Draw' ? `Camp 2 ended in a draw` : `Camp 2 winner: ${campTwoWinner}`}</p>
         <p>{campThreeWinner === 'Draw' ? `Camp 3 ended in a draw` : `Camp 3 winner: ${campThreeWinner}`}</p>
       </div>
-      <button onClick={startNextTurn}>New turn ({turnNumber + 1})</button>
+      <button onClick={turnNumber === 10 ? showGameResults : startNextTurn}>{buttonText}</button>
     </div>
   );
 };
