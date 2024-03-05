@@ -6,6 +6,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFortAwesome } from '@fortawesome/free-brands-svg-icons';
 import { faCoins } from '@fortawesome/free-solid-svg-icons';
 
+import { settings } from '../data/settings';
+const { gold } = settings;
+
 const CastleModal = ({ castleCost, playerId, upgradeCastle, cancelCastle }) => {
   const castleLevel = useSelector(state => state.castleLevel.players[playerId]?.castleLevel);
   const goldPerTurn = useSelector(state => state.goldPerTurn.players[playerId]?.goldPerTurn);
@@ -25,7 +28,7 @@ const CastleModal = ({ castleCost, playerId, upgradeCastle, cancelCastle }) => {
         </div>
         <div className={styles.castleNextLevel}>
           <p>Next level ({castleLevel + 1})</p>
-          <p>{goldPerTurn + 50} gold per turn</p>
+          <p>{goldPerTurn + gold.income.increaseBy} gold per turn</p>
         </div>
       </div>
       <div className={styles.castleUpgradeWrapper}>

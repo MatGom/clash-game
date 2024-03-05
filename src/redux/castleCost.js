@@ -1,9 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { settings } from '../data/settings';
+
+const { castle } = settings;
+
 const initialState = {
   players: {
-    playerOne: { castleCost: 50 },
-    playerTwo: { castleCost: 50 },
+    playerOne: { castleCost: castle.cost.initial },
+    playerTwo: { castleCost: castle.cost.initial },
   },
 };
 
@@ -14,7 +18,7 @@ export const castleCostSlice = createSlice({
     increaseCastleCost: (state, action) => {
       const { playerId } = action.payload;
       if (state.players[playerId]) {
-        state.players[playerId].castleCost += 10;
+        state.players[playerId].castleCost += castle.cost.increaseBy;
       }
     },
     resetCastleCost: () => initialState,

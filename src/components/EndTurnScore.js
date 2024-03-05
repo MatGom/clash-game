@@ -1,5 +1,9 @@
 import styles from './EndTurnScore.module.scss';
 
+import { settings } from '../data/settings';
+
+const { turns } = settings;
+
 const EndTurnScore = ({
   turnNumber,
   startNextTurn,
@@ -9,7 +13,7 @@ const EndTurnScore = ({
   campThreeWinner,
   endTurnOutcomeMessage,
 }) => {
-  const buttonText = turnNumber === 10 ? 'Show Game Results' : `New Turn (${turnNumber + 1})`;
+  const buttonText = turnNumber === turns.maximum ? 'Show Game Results' : `New Turn (${turnNumber + 1})`;
 
   return (
     <div className={styles.endTurnScore}>

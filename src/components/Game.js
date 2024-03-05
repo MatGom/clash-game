@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import styles from './Game.module.scss';
 
 import Player from './Player';
@@ -10,7 +10,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { renewGoldToSpendNextTurn } from '../redux/goldToSpendPerTurn';
 import { updateTotalGold, transferGold } from '../redux/totalGold';
 
+import { settings } from '../data/settings';
+
 const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame, resetGame }) => {
+  const { loot } = settings;
+
   const [currentPlayer, setCurrentPlayer] = useState('playerOne');
   const [turnNumber, setTurnNumber] = useState(1);
   const [isTurnStart, setIsTurnStart] = useState(true);
@@ -82,16 +86,6 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame, resetGame
     },
   ];
 
-  useEffect(() => {
-    if (playerOneTotalGold <= 0) {
-      alert(`${playerOneName} lost!`);
-      endGame();
-    } else if (playerTwoTotalGold <= 0) {
-      alert(`${playerTwoName} lost!`);
-      endGame();
-    }
-  }, [playerOneTotalGold, playerTwoTotalGold, playerOneName, playerTwoName, endGame]);
-
   const camps = {
     playerOne: [
       {
@@ -150,8 +144,8 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame, resetGame
       }
     });
 
-    const playerOneTransferPercentage = playerOneVictories * 10;
-    const playerTwoTransferPercentage = playerTwoVictories * 10;
+    const playerOneTransferPercentage = playerOneVictories * loot.percent;
+    const playerTwoTransferPercentage = playerTwoVictories * loot.percent;
 
     if (playerOneVictories > playerTwoVictories) {
       const amountToTransfer = Math.round(

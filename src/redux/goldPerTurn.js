@@ -1,9 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { settings } from '../data/settings';
+
+const { gold } = settings;
+
 const initialState = {
   players: {
-    playerOne: { goldPerTurn: 100 },
-    playerTwo: { goldPerTurn: 100 },
+    playerOne: { goldPerTurn: gold.income.initial },
+    playerTwo: { goldPerTurn: gold.income.initial },
   },
 };
 
@@ -14,7 +18,7 @@ export const goldPerTurnSlice = createSlice({
     upgradeGoldPerTurn: (state, action) => {
       const { playerId } = action.payload;
       if (state.players[playerId]) {
-        state.players[playerId].goldPerTurn += 50;
+        state.players[playerId].goldPerTurn += gold.income.increaseBy;
       }
     },
     resetGoldPerTurn: () => initialState,

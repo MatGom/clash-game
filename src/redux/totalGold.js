@@ -1,9 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { settings } from '../data/settings';
+
+const { gold } = settings;
+
 const initialState = {
   players: {
-    playerOne: { totalGold: 1000 },
-    playerTwo: { totalGold: 1000 },
+    playerOne: { totalGold: gold.total.initial },
+    playerTwo: { totalGold: gold.total.initial },
   },
 };
 

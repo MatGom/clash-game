@@ -1,9 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { settings } from '../data/settings';
+
+const { gold } = settings;
+
 const initialState = {
   players: {
-    playerOne: { goldToSpendThisTurn: 100, goldToSpendNextTurn: 100 },
-    playerTwo: { goldToSpendThisTurn: 100, goldToSpendNextTurn: 100 },
+    playerOne: { goldToSpendThisTurn: gold.limit.thisTurn.initial, goldToSpendNextTurn: gold.limit.nextTurn.initial },
+    playerTwo: { goldToSpendThisTurn: gold.limit.thisTurn.initial, goldToSpendNextTurn: gold.limit.nextTurn.initial },
   },
 };
 
@@ -14,7 +18,7 @@ export const goldToSpendPerTurnSlice = createSlice({
     upgradeGoldToSpendNextTurn: (state, action) => {
       const { playerId } = action.payload;
       if (state.players[playerId]) {
-        state.players[playerId].goldToSpendNextTurn += 10;
+        state.players[playerId].goldToSpendNextTurn += gold.limit.nextTurn.increaseBy;
       }
     },
     decreaseGoldToSpendThisTurn: (state, action) => {
