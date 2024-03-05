@@ -41,7 +41,7 @@ const PlayerInfo = ({ playerId, name }) => {
     }
   };
 
-  const handleCancelCastleModal = () => {
+  const handleCloseCastleModal = () => {
     setCastleModalIsOpen(false);
   };
 
@@ -66,7 +66,7 @@ const PlayerInfo = ({ playerId, name }) => {
           playerId={playerId}
           goldToSpendThisTurn={goldToSpendThisTurn}
           upgradeCastle={handleUpgradeCastleModal}
-          cancelCastle={handleCancelCastleModal}
+          closeCastle={handleCloseCastleModal}
         />
       ) : null}
     </>

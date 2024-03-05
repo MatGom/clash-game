@@ -9,7 +9,7 @@ import { faCoins } from '@fortawesome/free-solid-svg-icons';
 import { settings } from '../data/settings';
 const { gold } = settings;
 
-const CastleModal = ({ castleCost, playerId, upgradeCastle, cancelCastle }) => {
+const CastleModal = ({ castleCost, playerId, upgradeCastle, closeCastle }) => {
   const castleLevel = useSelector(state => state.castleLevel.players[playerId]?.castleLevel);
   const goldPerTurn = useSelector(state => state.goldPerTurn.players[playerId]?.goldPerTurn);
   const goldToSpendThisTurn = useSelector(state => state.goldToSpendPerTurn.players[playerId]?.goldToSpendThisTurn);
@@ -24,11 +24,12 @@ const CastleModal = ({ castleCost, playerId, upgradeCastle, cancelCastle }) => {
       <div className={styles.castleInfo}>
         <div className={styles.castleCurrentLevel}>
           <p>Current level ({castleLevel})</p>
-          <p>{goldPerTurn} gold per turn</p>
+          <p>Total income per turn {goldPerTurn}g</p>
         </div>
         <div className={styles.castleNextLevel}>
           <p>Next level ({castleLevel + 1})</p>
-          <p>{goldPerTurn + gold.income.increaseBy} gold per turn</p>
+          <p>Total income per turn {goldPerTurn + gold.income.increaseBy}g</p>
+          <p>Increase gold limit to spend per turn by {gold.limit.nextTurn.increaseBy}</p>
         </div>
       </div>
       <div className={styles.castleUpgradeWrapper}>
@@ -39,8 +40,8 @@ const CastleModal = ({ castleCost, playerId, upgradeCastle, cancelCastle }) => {
         <button className={styles.castleUpgradeButton} onClick={() => upgradeCastle(playerId)}>
           Upgrade
         </button>
-        <button className={styles.castleCancelButton} onClick={cancelCastle}>
-          Cancel
+        <button className={styles.castleCloseButton} onClick={closeCastle}>
+          Close
         </button>
       </div>
       <p>Gold to spend this turn {goldToSpendThisTurn}</p>

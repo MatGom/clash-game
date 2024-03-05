@@ -11,6 +11,7 @@ import { renewGoldToSpendNextTurn } from '../redux/goldToSpendPerTurn';
 import { updateTotalGold, transferGold } from '../redux/totalGold';
 
 import { settings } from '../data/settings';
+import StartTurnModal from './StartTurnModal';
 
 const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame, resetGame }) => {
   const { loot } = settings;
@@ -221,13 +222,13 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame, resetGame
     <div className={`${styles.game} ${currentPlayer === 'playerOne' ? styles.playerOneTurn : styles.playerTwoTurn}`}>
       {showInactiveOverlay && <div className={styles.hideInactive}></div>}
       {isTurnStart ? (
-        <div className={styles.playerTurn}>
-          <h2>{currentPlayer === 'playerOne' ? playerOneName : playerTwoName}</h2>
-          <p>Turn {turnNumber}</p>
-          <button className={styles.startTurnButton} onClick={startCurrentTurn}>
-            Start
-          </button>
-        </div>
+        <StartTurnModal
+          currentPlayer={currentPlayer}
+          playerOneName={playerOneName}
+          playerTwoName={playerTwoName}
+          turnNumber={turnNumber}
+          startCurrentTurn={startCurrentTurn}
+        />
       ) : null}
       {players.map(player => (
         <Player
