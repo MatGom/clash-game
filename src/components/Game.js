@@ -153,16 +153,24 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame }) => {
     const playerTwoTransferPercentage = playerTwoVictories * 10;
 
     if (playerOneVictories > playerTwoVictories) {
-      const amountToTransfer = Math.round(playerTwoTotalGold * (playerOneTransferPercentage / 100));
+      const amountToTransfer = Math.round(
+        playerTwoTotalGold * ((playerOneTransferPercentage - playerTwoTransferPercentage) / 100)
+      );
       dispatch(transferGold({ winnerId: 'playerOne', loserId: 'playerTwo', amount: amountToTransfer }));
       setEndTurnOutcomeMessage(
-        `${playerOneName} wins and takes ${playerOneTransferPercentage}% of opponents total gold`
+        `${playerOneName} wins and takes ${
+          playerOneTransferPercentage - playerTwoTransferPercentage
+        }% of opponents total gold`
       );
     } else if (playerTwoVictories > playerOneVictories) {
-      const amountToTransfer = Math.round(playerOneTotalGold * (playerTwoTransferPercentage / 100));
+      const amountToTransfer = Math.round(
+        playerOneTotalGold * ((playerTwoTransferPercentage - playerOneTransferPercentage) / 100)
+      );
       dispatch(transferGold({ winnerId: 'playerTwo', loserId: 'playerOne', amount: amountToTransfer }));
       setEndTurnOutcomeMessage(
-        `${playerTwoName} wins and takes ${playerTwoTransferPercentage}% of opponents total gold`
+        `${playerTwoName} wins and takes ${
+          playerTwoTransferPercentage - playerOneTransferPercentage
+        }% of opponents total gold`
       );
     } else {
       setEndTurnOutcomeMessage('The battle ended in a draw');
