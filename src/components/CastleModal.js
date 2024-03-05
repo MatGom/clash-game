@@ -10,7 +10,7 @@ import { settings } from '../data/settings';
 const { gold } = settings;
 
 const CastleModal = ({ castleCost, playerId, upgradeCastle, closeCastle }) => {
-  const castleLevel = useSelector(state => state.castleLevel.players[playerId]?.castleLevel);
+  const castleLevel = useSelector(state => state.castleState.players[playerId]?.castleLevel);
   const goldPerTurn = useSelector(state => state.goldPerTurn.players[playerId]?.goldPerTurn);
   const goldToSpendThisTurn = useSelector(state => state.goldToSpendPerTurn.players[playerId]?.goldToSpendThisTurn);
 

@@ -5,8 +5,7 @@ import styles from './Start.module.scss';
 
 import Game from './Game';
 import RulesModal from './RulesModal';
-import { resetCastleCost } from '../redux/castleCost';
-import { resetCastleLevel } from '../redux/castleLevel';
+import { resetCastle } from '../redux/castleStateSlice';
 import { resetGoldPerTurn } from '../redux/goldPerTurn';
 import { resetGoldToSpendPerTurn } from '../redux/goldToSpendPerTurn';
 import { resetTotalCampAttack } from '../redux/totalCampAttack';
@@ -40,8 +39,7 @@ const Start = () => {
     setPlayerTwoName('');
     setRulesModalIsOpen(false);
 
-    dispatch(resetCastleCost());
-    dispatch(resetCastleLevel());
+    dispatch(resetCastle());
     dispatch(resetGoldPerTurn());
     dispatch(resetGoldToSpendPerTurn());
     dispatch(resetTotalCampAttack());
