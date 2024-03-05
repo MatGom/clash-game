@@ -7,9 +7,8 @@ import Game from './Game';
 import RulesModal from './RulesModal';
 import { resetCastle } from '../redux/castleStateSlice';
 import { resetGold } from '../redux/goldStateSlice';
-import { resetTotalCampAttack } from '../redux/totalCampAttack';
-import { resetTotalCampDefence } from '../redux/totalCampDefence';
-import { resetUnitsOwned } from '../redux/unitsOwned';
+import { resetCampStats } from '../redux/campStatsStateSlice';
+import { resetUnitsOwned } from '../redux/unitsOwnedStateSlice';
 
 const Start = () => {
   const [gameIsOn, setGameIsOn] = useState(false);
@@ -39,8 +38,7 @@ const Start = () => {
 
     dispatch(resetCastle());
     dispatch(resetGold());
-    dispatch(resetTotalCampAttack());
-    dispatch(resetTotalCampDefence());
+    dispatch(resetCampStats());
     dispatch(resetUnitsOwned());
 
     setGameIsOn(false);

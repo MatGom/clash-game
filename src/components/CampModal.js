@@ -6,8 +6,8 @@ import { useSelector } from 'react-redux';
 import UnitCard from './UnitCard';
 
 const CampModal = ({ playerId, campId, saveCamp, cancelCamp, name }) => {
-  const campAttack = useSelector(state => state.totalCampAttack.totalCampAttack[campId]);
-  const campDefence = useSelector(state => state.totalCampDefence.totalCampDefence[campId]);
+  const campAttack = useSelector(state => state.campStatsState.totalCampAttack[campId]);
+  const campDefence = useSelector(state => state.campStatsState.totalCampDefence[campId]);
   const goldToSpendThisTurn = useSelector(state => state.goldState.players[playerId]?.goldToSpendThisTurn);
 
   return (

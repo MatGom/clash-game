@@ -11,8 +11,8 @@ import CampModal from './CampModal';
 const Camp = ({ playerId, campId, name }) => {
   const [campModalIsOpen, setCampModalIsOpen] = useState(false);
 
-  const campAttack = useSelector(state => state.totalCampAttack.totalCampAttack[campId]);
-  const campDefence = useSelector(state => state.totalCampDefence.totalCampDefence[campId]);
+  const campAttack = useSelector(state => state.campStatsState.totalCampAttack[campId]);
+  const campDefence = useSelector(state => state.campStatsState.totalCampDefence[campId]);
 
   const handleShowCampModal = () => {
     setCampModalIsOpen(true);

@@ -41,8 +41,8 @@ const initialState = {
   },
 };
 
-export const unitsOwnedSlice = createSlice({
-  name: 'unitsOwned',
+export const unitsOwnedStateSlice = createSlice({
+  name: 'unitsOwnedState',
   initialState,
   reducers: {
     increaseOwned: (state, action) => {
@@ -59,6 +59,6 @@ export const unitsOwnedSlice = createSlice({
   },
 });
 
-export const { increaseOwned, resetUnitsOwned } = unitsOwnedSlice.actions;
+export const { increaseOwned, resetUnitsOwned } = unitsOwnedStateSlice.actions;
 
-export default unitsOwnedSlice.reducer;
+export default unitsOwnedStateSlice.reducer;

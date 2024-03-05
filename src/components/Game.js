@@ -89,30 +89,30 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame, resetGame
   const camps = {
     playerOne: [
       {
-        totalAttack: useSelector(state => state.totalCampAttack.totalCampAttack.player1camp1),
-        totalDefense: useSelector(state => state.totalCampDefence.totalCampDefence.player1camp1),
+        totalAttack: useSelector(state => state.campStatsState.totalCampAttack.player1camp1),
+        totalDefence: useSelector(state => state.campStatsState.totalCampDefence.player1camp1),
       },
       {
-        totalAttack: useSelector(state => state.totalCampAttack.totalCampAttack.player1camp2),
-        totalDefense: useSelector(state => state.totalCampDefence.totalCampDefence.player1camp2),
+        totalAttack: useSelector(state => state.campStatsState.totalCampAttack.player1camp2),
+        totalDefence: useSelector(state => state.campStatsState.totalCampDefence.player1camp2),
       },
       {
-        totalAttack: useSelector(state => state.totalCampAttack.totalCampAttack.player1camp3),
-        totalDefense: useSelector(state => state.totalCampDefence.totalCampDefence.player1camp3),
+        totalAttack: useSelector(state => state.campStatsState.totalCampAttack.player1camp3),
+        totalDefence: useSelector(state => state.campStatsState.totalCampDefence.player1camp3),
       },
     ],
     playerTwo: [
       {
-        totalAttack: useSelector(state => state.totalCampAttack.totalCampAttack.player2camp1),
-        totalDefense: useSelector(state => state.totalCampDefence.totalCampDefence.player2camp1),
+        totalAttack: useSelector(state => state.campStatsState.totalCampAttack.player2camp1),
+        totalDefence: useSelector(state => state.campStatsState.totalCampDefence.player2camp1),
       },
       {
-        totalAttack: useSelector(state => state.totalCampAttack.totalCampAttack.player2camp2),
-        totalDefense: useSelector(state => state.totalCampDefence.totalCampDefence.player2camp2),
+        totalAttack: useSelector(state => state.campStatsState.totalCampAttack.player2camp2),
+        totalDefence: useSelector(state => state.campStatsState.totalCampDefence.player2camp2),
       },
       {
-        totalAttack: useSelector(state => state.totalCampAttack.totalCampAttack.player2camp3),
-        totalDefense: useSelector(state => state.totalCampDefence.totalCampDefence.player2camp3),
+        totalAttack: useSelector(state => state.campStatsState.totalCampAttack.player2camp3),
+        totalDefence: useSelector(state => state.campStatsState.totalCampDefence.player2camp3),
       },
     ],
   };
@@ -127,12 +127,12 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame, resetGame
 
     camps.playerOne.forEach((camp, index) => {
       const opponentCamp = camps.playerTwo[index];
-      if (camp.totalAttack > opponentCamp.totalDefense) {
+      if (camp.totalAttack > opponentCamp.totalDefence) {
         playerOneVictories += 1;
         if (index === 0) setCampOneWinner(playerOneName);
         else if (index === 1) setCampTwoWinner(playerOneName);
         else if (index === 2) setCampThreeWinner(playerOneName);
-      } else if (opponentCamp.totalAttack > camp.totalDefense) {
+      } else if (opponentCamp.totalAttack > camp.totalDefence) {
         playerTwoVictories += 1;
         if (index === 0) setCampOneWinner(playerTwoName);
         else if (index === 1) setCampTwoWinner(playerTwoName);
