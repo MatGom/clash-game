@@ -25,7 +25,7 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame, resetGame
   const [endTurnOutcomeMessage, setEndTurnOutcomeMessage] = useState('');
   const [showInactiveOverlay, setShowInactiveOverlay] = useState(true);
   const [showGameResultsModal, setShowGameResultsModal] = useState(false);
-  const [activeModal, setActiveModal] = useState({ type: null, campId: null });
+  const [activeModal, setActiveModal] = useState({ type: null, campId: null, playerId: null });
 
   const dispatch = useDispatch();
 
@@ -128,12 +128,15 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame, resetGame
 
     camps.playerOne.forEach((camp, index) => {
       const opponentCamp = camps.playerTwo[index];
-      if (camp.totalAttack > opponentCamp.totalDefence) {
+      const playerOneWins = camp.totalAttack > opponentCamp.totalDefence;
+      const playerTwoWins = opponentCamp.totalAttack > camp.totalDefence;
+
+      if (playerOneWins && !playerTwoWins) {
         playerOneVictories += 1;
         if (index === 0) setCampOneWinner(playerOneName);
         else if (index === 1) setCampTwoWinner(playerOneName);
         else if (index === 2) setCampThreeWinner(playerOneName);
-      } else if (opponentCamp.totalAttack > camp.totalDefence) {
+      } else if (!playerOneWins && playerTwoWins) {
         playerTwoVictories += 1;
         if (index === 0) setCampOneWinner(playerTwoName);
         else if (index === 1) setCampTwoWinner(playerTwoName);
@@ -176,15 +179,15 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame, resetGame
   };
 
   const handleShowCampModal = campId => {
-    setActiveModal({ type: 'camp', campId });
+    setActiveModal({ type: 'camp', campId, playerId: null });
   };
 
-  const handleShowCastleModal = () => {
-    setActiveModal({ type: 'castle', campId: null });
+  const handleShowCastleModal = playerId => {
+    setActiveModal({ type: 'castle', campId: null, playerId });
   };
 
   const handleCloseModal = () => {
-    setActiveModal({ type: null, campId: null });
+    setActiveModal({ type: null, campId: null, playerId: null });
   };
 
   const startCurrentTurn = () => {

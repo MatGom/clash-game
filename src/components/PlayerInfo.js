@@ -44,13 +44,13 @@ const PlayerInfo = ({ playerId, name, handleShowCastleModal, handleCloseModal, a
             <FontAwesomeIcon className={styles.goldIcon} icon={faCoins} />
             <p className={styles.goldAmount}>{totalGold}</p>
           </div>
-          <div className={styles.castle} onClick={handleShowCastleModal}>
+          <div className={styles.castle} onClick={() => handleShowCastleModal(playerId)}>
             <FontAwesomeIcon className={styles.castleIcon} icon={faFortAwesome} />
             <p className={styles.castleLevel}>{castleLevel}</p>
           </div>
         </div>
       </div>
-      {activeModal.type === 'castle' && (
+      {activeModal.type === 'castle' && activeModal.playerId === playerId && (
         <CastleModal
           castleCost={castleCost}
           playerId={playerId}
