@@ -55,14 +55,20 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame, resetGame
         {
           id: 'player1camp1',
           name: 'Camp 1',
+          totalAttack: useSelector(state => state.campStatsState.totalCampAttack.player1camp1),
+          totalDefence: useSelector(state => state.campStatsState.totalCampDefence.player1camp1),
         },
         {
           id: 'player1camp2',
           name: 'Camp 2',
+          totalAttack: useSelector(state => state.campStatsState.totalCampAttack.player1camp2),
+          totalDefence: useSelector(state => state.campStatsState.totalCampDefence.player1camp2),
         },
         {
           id: 'player1camp3',
           name: 'Camp 3',
+          totalAttack: useSelector(state => state.campStatsState.totalCampAttack.player1camp3),
+          totalDefence: useSelector(state => state.campStatsState.totalCampDefence.player1camp3),
         },
       ],
     },
@@ -74,48 +80,30 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame, resetGame
         {
           id: 'player2camp1',
           name: 'Camp 1',
+          totalAttack: useSelector(state => state.campStatsState.totalCampAttack.player2camp1),
+          totalDefence: useSelector(state => state.campStatsState.totalCampDefence.player2camp1),
         },
         {
           id: 'player2camp2',
           name: 'Camp 2',
+          totalAttack: useSelector(state => state.campStatsState.totalCampAttack.player2camp2),
+          totalDefence: useSelector(state => state.campStatsState.totalCampDefence.player2camp2),
         },
         {
           id: 'player2camp3',
           name: 'Camp 3',
+          totalAttack: useSelector(state => state.campStatsState.totalCampAttack.player2camp3),
+          totalDefence: useSelector(state => state.campStatsState.totalCampDefence.player2camp3),
         },
       ],
     },
   ];
 
+  const [playerOneCamps, playerTwoCamps] = players.map(player => player.camps);
+
   const camps = {
-    playerOne: [
-      {
-        totalAttack: useSelector(state => state.campStatsState.totalCampAttack.player1camp1),
-        totalDefence: useSelector(state => state.campStatsState.totalCampDefence.player1camp1),
-      },
-      {
-        totalAttack: useSelector(state => state.campStatsState.totalCampAttack.player1camp2),
-        totalDefence: useSelector(state => state.campStatsState.totalCampDefence.player1camp2),
-      },
-      {
-        totalAttack: useSelector(state => state.campStatsState.totalCampAttack.player1camp3),
-        totalDefence: useSelector(state => state.campStatsState.totalCampDefence.player1camp3),
-      },
-    ],
-    playerTwo: [
-      {
-        totalAttack: useSelector(state => state.campStatsState.totalCampAttack.player2camp1),
-        totalDefence: useSelector(state => state.campStatsState.totalCampDefence.player2camp1),
-      },
-      {
-        totalAttack: useSelector(state => state.campStatsState.totalCampAttack.player2camp2),
-        totalDefence: useSelector(state => state.campStatsState.totalCampDefence.player2camp2),
-      },
-      {
-        totalAttack: useSelector(state => state.campStatsState.totalCampAttack.player2camp3),
-        totalDefence: useSelector(state => state.campStatsState.totalCampDefence.player2camp3),
-      },
-    ],
+    playerOne: playerOneCamps,
+    playerTwo: playerTwoCamps,
   };
 
   const performBattlePhase = () => {
