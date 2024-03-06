@@ -23,7 +23,7 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame, resetGame
   const [campTwoWinner, setCampTwoWinner] = useState('');
   const [campThreeWinner, setCampThreeWinner] = useState('');
   const [endTurnOutcomeMessage, setEndTurnOutcomeMessage] = useState('');
-  const [showInactiveOverlay, setShowInactiveOverlay] = useState(true);
+  const [showCurtain, setShowCurtain] = useState(true);
   const [showGameResultsModal, setShowGameResultsModal] = useState(false);
   const [activeModal, setActiveModal] = useState({ type: null, campId: null, playerId: null });
 
@@ -184,7 +184,7 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame, resetGame
 
   const startNextTurn = () => {
     setShowBattleResults(false);
-    setShowInactiveOverlay(true);
+    setShowCurtain(true);
     setIsTurnStart(true);
 
     setTurnNumber(prevTurnNumber => prevTurnNumber + 1);
@@ -206,7 +206,7 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame, resetGame
     setCurrentPlayer(nextPlayerId);
 
     if (currentPlayer === 'playerTwo') {
-      setShowInactiveOverlay(false);
+      setShowCurtain(false);
       setIsTurnStart(false);
       performBattlePhase();
     }
@@ -223,7 +223,12 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame, resetGame
 
   return (
     <div className={`${styles.game} ${currentPlayer === 'playerOne' ? styles.playerOneTurn : styles.playerTwoTurn}`}>
-      {showInactiveOverlay && <div className={styles.hideInactive}></div>}
+      {showCurtain && (
+        <div className={`${styles.curtain} ${currentPlayer === 'playerOne' ? styles.blueCurtain : styles.redCurtain}`}>
+          <p className={styles.curtainTurn}>Turn {turnNumber}</p>
+          <p className={styles.curtainPlayer}>{currentPlayer === 'playerOne' ? playerOneName : playerTwoName}</p>
+        </div>
+      )}
       {isTurnStart ? (
         <StartTurnModal
           currentPlayer={currentPlayer}
