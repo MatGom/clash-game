@@ -17,14 +17,17 @@ const Start = () => {
   const [playerOneName, setPlayerOneName] = useState('');
   const [playerTwoName, setPlayerTwoName] = useState('');
   const [rulesModalIsOpen, setRulesModalIsOpen] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(false);
 
   const dispatch = useDispatch();
 
   const handleStartGame = () => {
-    if (playerOneName.trim().length >= 3 && playerTwoName.trim().length >= 3) {
+    if (playerOneName.trim().length >= 1 && playerTwoName.trim().length >= 1) {
+      setErrorMessage(false);
       setGameIsOn(true);
     } else {
-      alert('Please enter names for both players to start the game.');
+      setErrorMessage(true);
+      return;
     }
   };
 
@@ -59,11 +62,16 @@ const Start = () => {
       {!gameIsOn ? (
         <div className={styles.start}>
           <h1 className={styles.gameTitle}>Clash Game</h1>
-          <Button theme='sapphire' size='large' onClick={handleShowRulesModal}>
+          <Button theme='sapphire' size='medium' onClick={handleShowRulesModal}>
             Rules
           </Button>
           <form className={styles.playersSettings}>
-            <label className={styles.playersNames}>Enter player's names</label>
+            <p className={styles.playersNames}>Enter player's names</p>
+            {!errorMessage ? (
+              <p className={styles.playersMessage}>Maximum 10 characters</p>
+            ) : (
+              <p className={styles.playersErrorMessage}>Enter both names</p>
+            )}
             <input
               type='text'
               minLength='3'
