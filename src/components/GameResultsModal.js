@@ -1,5 +1,7 @@
 import styles from './GameResultsModal.module.scss';
 
+import Button from './UI/Button';
+
 import { useSelector } from 'react-redux';
 
 const GameResultsModal = ({ restartGame, playerOneName, playerTwoName }) => {
@@ -22,7 +24,9 @@ const GameResultsModal = ({ restartGame, playerOneName, playerTwoName }) => {
         <p>{`${playerOneName} total gold ${playerOneTotalGold}`}</p>
         <p>{`${playerTwoName} total gold ${playerTwoTotalGold}`}</p>
       </div>
-      <button onClick={restartGame}>Start New Game</button>
+      <Button theme='emerald' size='large' onClick={restartGame}>
+        Main Menu
+      </Button>
     </div>
   );
 };

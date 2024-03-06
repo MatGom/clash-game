@@ -1,5 +1,7 @@
 import styles from './UnitCard.module.scss';
 
+import Button from './UI/Button';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { increaseOwned } from '../redux/unitsOwnedStateSlice';
 import { increaseAttack, increaseDefence } from '../redux/campStatsStateSlice';
@@ -33,9 +35,9 @@ const UnitCard = ({ playerId, campId, unitId, name, icon, attack, defence, cost 
         <p>Cost: {cost}</p>
         <p>Owned: {unitsOwned}</p>
       </div>
-      <button className={styles.unitBuy} onClick={handleBuyUnit}>
-        Buy
-      </button>
+      <Button theme='sapphire' size='extra-small' onClick={handleBuyUnit}>
+        Train
+      </Button>
     </div>
   );
 };

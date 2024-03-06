@@ -5,6 +5,8 @@ import styles from './Start.module.scss';
 
 import Game from './Game';
 import RulesModal from './RulesModal';
+import Button from './UI/Button';
+
 import { resetCastle } from '../redux/castleStateSlice';
 import { resetGold } from '../redux/goldStateSlice';
 import { resetCampStats } from '../redux/campStatsStateSlice';
@@ -57,9 +59,9 @@ const Start = () => {
       {!gameIsOn ? (
         <div className={styles.start}>
           <h1 className={styles.gameTitle}>Clash Game</h1>
-          <button className={styles.gameRulesButton} onClick={handleShowRulesModal}>
+          <Button theme='sapphire' size='large' onClick={handleShowRulesModal}>
             Rules
-          </button>
+          </Button>
           <form className={styles.playersSettings}>
             <label className={styles.playersNames}>Enter player's names</label>
             <input
@@ -79,9 +81,9 @@ const Start = () => {
               onChange={event => setPlayerTwoName(event.target.value)}
             />
           </form>
-          <button className={styles.gameStartButton} onClick={handleStartGame}>
+          <Button theme='emerald' size='large' onClick={handleStartGame}>
             Start
-          </button>
+          </Button>
         </div>
       ) : (
         <Game

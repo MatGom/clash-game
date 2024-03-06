@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleQuestion, faGear } from '@fortawesome/free-solid-svg-icons';
 
 import SettingsModal from './SettingsModal';
+import Button from './UI/Button';
 
 const Settings = ({ turnNumber, endTurn, showRulesModal, endGame }) => {
   const [settingsModalIsOpen, setSettingsModalIsOpen] = useState(false);
@@ -22,9 +23,9 @@ const Settings = ({ turnNumber, endTurn, showRulesModal, endGame }) => {
     <>
       <div className={styles.settings}>
         <FontAwesomeIcon className={styles.rulesIcon} onClick={showRulesModal} icon={faCircleQuestion} />
-        <button className={styles.endTurnButton} onClick={endTurn}>
+        <Button theme='ruby' size='medium' onClick={endTurn}>
           End turn {turnNumber}
-        </button>
+        </Button>
         <FontAwesomeIcon className={styles.settingsIcon} onClick={handleShowSettingsModal} icon={faGear} />
       </div>
       {settingsModalIsOpen ? <SettingsModal closeSettingsModal={handleCloseSettingsModal} endGame={endGame} /> : null}

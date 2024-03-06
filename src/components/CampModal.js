@@ -4,6 +4,7 @@ import { units } from '../data/units-data';
 import { useSelector } from 'react-redux';
 
 import UnitCard from './UnitCard';
+import Button from './UI/Button';
 
 const CampModal = ({ playerId, campId, name, handleCloseModal }) => {
   const campAttack = useSelector(state => state.campStatsState.totalCampAttack[campId]);
@@ -33,11 +34,9 @@ const CampModal = ({ playerId, campId, name, handleCloseModal }) => {
         ))}
       </div>
       <p className={styles.goldThisTurn}>Gold to spend this turn {goldToSpendThisTurn}</p>
-      <div className={styles.buttons}>
-        <button className={styles.close} onClick={handleCloseModal}>
-          Close
-        </button>
-      </div>
+      <Button theme='ruby' size='small' onClick={handleCloseModal}>
+        Close
+      </Button>
     </div>
   );
 };

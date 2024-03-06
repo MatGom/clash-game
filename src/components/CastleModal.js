@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFortAwesome } from '@fortawesome/free-brands-svg-icons';
 import { faCoins } from '@fortawesome/free-solid-svg-icons';
 
+import Button from './UI/Button';
+
 import { settings } from '../data/settings';
 
 const { gold } = settings;
@@ -38,12 +40,12 @@ const CastleModal = ({ castleCost, playerId, upgradeCastle, closeModal }) => {
           Cost <FontAwesomeIcon className={styles.goldIcon} icon={faCoins} />
           {castleCost}
         </p>
-        <button className={styles.castleUpgradeButton} onClick={() => upgradeCastle(playerId)}>
+        <Button theme='sapphire' size='small' onClick={() => upgradeCastle(playerId)}>
           Upgrade
-        </button>
-        <button className={styles.castleCloseButton} onClick={closeModal}>
+        </Button>
+        <Button theme='ruby' size='small' onClick={closeModal}>
           Close
-        </button>
+        </Button>
       </div>
       <p>Gold to spend this turn {goldToSpendThisTurn}</p>
     </div>
