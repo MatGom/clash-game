@@ -10,7 +10,7 @@ import { settings } from '../data/settings';
 
 const { gold } = settings;
 
-const CastleModal = ({ castleCost, playerId, upgradeCastle, closeCastle }) => {
+const CastleModal = ({ castleCost, playerId, upgradeCastle, closeModal }) => {
   const castleLevel = useSelector(state => state.castleState.players[playerId]?.castleLevel);
   const goldIncome = useSelector(state => state.goldState.players[playerId]?.goldIncome);
   const goldToSpendThisTurn = useSelector(state => state.goldState.players[playerId]?.goldToSpendThisTurn);
@@ -41,7 +41,7 @@ const CastleModal = ({ castleCost, playerId, upgradeCastle, closeCastle }) => {
         <button className={styles.castleUpgradeButton} onClick={() => upgradeCastle(playerId)}>
           Upgrade
         </button>
-        <button className={styles.castleCloseButton} onClick={closeCastle}>
+        <button className={styles.castleCloseButton} onClick={closeModal}>
           Close
         </button>
       </div>

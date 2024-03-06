@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import styles from './Camp.module.scss';
@@ -8,27 +7,13 @@ import { faCampground, faShield, faSkull } from '@fortawesome/free-solid-svg-ico
 
 import CampModal from './CampModal';
 
-const Camp = ({ playerId, campId, name }) => {
-  const [campModalIsOpen, setCampModalIsOpen] = useState(false);
-
+const Camp = ({ playerId, campId, name, handleShowCampModal, handleCloseModal, activeModal }) => {
   const campAttack = useSelector(state => state.campStatsState.totalCampAttack[campId]);
   const campDefence = useSelector(state => state.campStatsState.totalCampDefence[campId]);
 
-  const handleShowCampModal = () => {
-    setCampModalIsOpen(true);
-  };
-
-  const handleSaveCampModal = () => {
-    setCampModalIsOpen(false);
-  };
-
-  const handleCancelCampModal = () => {
-    setCampModalIsOpen(false);
-  };
-
   return (
     <>
-      <div className={`${styles.camp} camp`} onClick={handleShowCampModal}>
+      <div className={`${styles.camp} camp`} onClick={() => handleShowCampModal(campId)}>
         <div className={styles.campImage}>
           <FontAwesomeIcon icon={faCampground} />
         </div>
@@ -43,15 +28,9 @@ const Camp = ({ playerId, campId, name }) => {
           </div>
         </div>
       </div>
-      {campModalIsOpen ? (
-        <CampModal
-          playerId={playerId}
-          campId={campId}
-          name={name}
-          saveCamp={handleSaveCampModal}
-          cancelCamp={handleCancelCampModal}
-        />
-      ) : null}
+      {activeModal.type === 'camp' && activeModal.campId === campId && (
+        <CampModal playerId={playerId} campId={campId} name={name} handleCloseModal={handleCloseModal} />
+      )}
     </>
   );
 };

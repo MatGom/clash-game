@@ -33,8 +33,6 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-
-
   }
 
   .goldThisTurn {
@@ -45,7 +43,7 @@
   .buttons {
     margin: 5px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     width: 50%;
 
     button {
@@ -54,11 +52,7 @@
       font-size: 14px;
     }
 
-    .save {
-      background: #5dfa7a;
-    }
-
-    .cancel {
+    .close {
       background: #f0553d;
     }
   }

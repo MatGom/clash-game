@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import styles from './PlayerInfo.module.scss';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,23 +5,22 @@ import { faFortAwesome } from '@fortawesome/free-brands-svg-icons';
 import { faCoins } from '@fortawesome/free-solid-svg-icons';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { upgradeGoldToSpendNextTurn, decreaseGoldToSpendThisTurn, decreaseTotalGold, upgradeGoldIncome } from '../redux/goldStateSlice';
+import {
+  upgradeGoldToSpendNextTurn,
+  decreaseGoldToSpendThisTurn,
+  decreaseTotalGold,
+  upgradeGoldIncome,
+} from '../redux/goldStateSlice';
 import { increaseCastleCost, upgradeCastleLevel } from '../redux/castleStateSlice';
 
 import CastleModal from './CastleModal';
 
-const PlayerInfo = ({ playerId, name }) => {
-  const [castleModalIsOpen, setCastleModalIsOpen] = useState(false);
-
+const PlayerInfo = ({ playerId, name, handleShowCastleModal, handleCloseModal, activeModal }) => {
   const castleLevel = useSelector(state => state.castleState.players[playerId]?.castleLevel);
   const castleCost = useSelector(state => state.castleState.players[playerId]?.castleCost);
   const goldToSpendThisTurn = useSelector(state => state.goldState.players[playerId]?.goldToSpendThisTurn);
   const totalGold = useSelector(state => state.goldState.players[playerId]?.totalGold);
   const dispatch = useDispatch();
-
-  const handleShowCastleModal = () => {
-    setCastleModalIsOpen(true);
-  };
 
   const handleUpgradeCastleModal = playerId => {
     if (goldToSpendThisTurn >= castleCost) {
@@ -36,10 +33,6 @@ const PlayerInfo = ({ playerId, name }) => {
     } else {
       alert('No more gold!');
     }
-  };
-
-  const handleCloseCastleModal = () => {
-    setCastleModalIsOpen(false);
   };
 
   return (
@@ -57,15 +50,15 @@ const PlayerInfo = ({ playerId, name }) => {
           </div>
         </div>
       </div>
-      {castleModalIsOpen ? (
+      {activeModal.type === 'castle' && (
         <CastleModal
           castleCost={castleCost}
           playerId={playerId}
           goldToSpendThisTurn={goldToSpendThisTurn}
           upgradeCastle={handleUpgradeCastleModal}
-          closeCastle={handleCloseCastleModal}
+          closeModal={handleCloseModal}
         />
-      ) : null}
+      )}
     </>
   );
 };

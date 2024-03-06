@@ -25,6 +25,7 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame, resetGame
   const [endTurnOutcomeMessage, setEndTurnOutcomeMessage] = useState('');
   const [showInactiveOverlay, setShowInactiveOverlay] = useState(true);
   const [showGameResultsModal, setShowGameResultsModal] = useState(false);
+  const [activeModal, setActiveModal] = useState({ type: null, campId: null });
 
   const dispatch = useDispatch();
 
@@ -174,6 +175,18 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame, resetGame
     setShowBattleResults(true);
   };
 
+  const handleShowCampModal = campId => {
+    setActiveModal({ type: 'camp', campId });
+  };
+
+  const handleShowCastleModal = () => {
+    setActiveModal({ type: 'castle', campId: null });
+  };
+
+  const handleCloseModal = () => {
+    setActiveModal({ type: null, campId: null });
+  };
+
   const startCurrentTurn = () => {
     setIsTurnStart(false);
   };
@@ -236,6 +249,10 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame, resetGame
           playerClass={player.playerClass}
           name={player.name}
           camps={player.camps}
+          handleShowCampModal={handleShowCampModal}
+          handleShowCastleModal={handleShowCastleModal}
+          handleCloseModal={handleCloseModal}
+          activeModal={activeModal}
         />
       ))}
       {showBattleResults ? (

@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 import UnitCard from './UnitCard';
 
-const CampModal = ({ playerId, campId, saveCamp, cancelCamp, name }) => {
+const CampModal = ({ playerId, campId, name, handleCloseModal }) => {
   const campAttack = useSelector(state => state.campStatsState.totalCampAttack[campId]);
   const campDefence = useSelector(state => state.campStatsState.totalCampDefence[campId]);
   const goldToSpendThisTurn = useSelector(state => state.goldState.players[playerId]?.goldToSpendThisTurn);
@@ -34,11 +34,8 @@ const CampModal = ({ playerId, campId, saveCamp, cancelCamp, name }) => {
       </div>
       <p className={styles.goldThisTurn}>Gold to spend this turn {goldToSpendThisTurn}</p>
       <div className={styles.buttons}>
-        <button className={styles.save} onClick={saveCamp}>
-          Save
-        </button>
-        <button className={styles.cancel} onClick={cancelCamp}>
-          Cancel
+        <button className={styles.close} onClick={handleCloseModal}>
+          Close
         </button>
       </div>
     </div>
