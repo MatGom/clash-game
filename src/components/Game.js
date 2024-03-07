@@ -23,6 +23,7 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame, resetGame
   const [campTwoWinner, setCampTwoWinner] = useState('');
   const [campThreeWinner, setCampThreeWinner] = useState('');
   const [endTurnOutcomeMessage, setEndTurnOutcomeMessage] = useState('');
+  const [turnResult, setTurnResult] = useState('');
   const [showCurtain, setShowCurtain] = useState(true);
   const [showGameResultsModal, setShowGameResultsModal] = useState(false);
   const [activeModal, setActiveModal] = useState({ type: null, campId: null, playerId: null });
@@ -149,6 +150,7 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame, resetGame
           playerOneTransferPercentage - playerTwoTransferPercentage
         }% of opponents total gold`
       );
+      setTurnResult('playerOne');
     } else if (playerTwoVictories > playerOneVictories) {
       const amountToTransfer = Math.round(
         playerOneTotalGold * ((playerTwoTransferPercentage - playerOneTransferPercentage) / 100)
@@ -159,8 +161,10 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame, resetGame
           playerTwoTransferPercentage - playerOneTransferPercentage
         }% of opponents total gold`
       );
+      setTurnResult('playerTwo');
     } else {
       setEndTurnOutcomeMessage('The battle ended in a draw');
+      setTurnResult('Draw');
     }
 
     setShowBattleResults(true);
@@ -260,6 +264,7 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame, resetGame
           campOneWinner={campOneWinner}
           campTwoWinner={campTwoWinner}
           campThreeWinner={campThreeWinner}
+          turnResult={turnResult}
         />
       ) : (
         <Settings showRulesModal={showRulesModal} endGame={endGame} endTurn={endTurn} />
