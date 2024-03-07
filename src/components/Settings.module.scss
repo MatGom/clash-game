@@ -4,12 +4,17 @@
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
-  width: 50%;
-  justify-content: space-evenly;
+  width: 90%;
+  justify-content: space-around;
   align-items: center;
 
   .rulesIcon,
   .settingsIcon {
-    color: rgb(0, 166, 255);
+    padding: 6px;
+    border-radius: 50%;
+    font-size: 2em;
+    background-color: #DAA520;
+    background-color: rgba(39, 78, 19, 0.4);
+    color: #B0C4DE;
   }
 }

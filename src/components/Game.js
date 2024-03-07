@@ -262,7 +262,7 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame, resetGame
           campThreeWinner={campThreeWinner}
         />
       ) : (
-        <Settings turnNumber={turnNumber} showRulesModal={showRulesModal} endGame={endGame} endTurn={endTurn} />
+        <Settings showRulesModal={showRulesModal} endGame={endGame} endTurn={endTurn} />
       )}
       {showGameResultsModal && (
         <GameResultsModal restartGame={restartGame} playerOneName={playerOneName} playerTwoName={playerTwoName} />
