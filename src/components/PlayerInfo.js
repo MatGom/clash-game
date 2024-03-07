@@ -15,7 +15,7 @@ import { increaseCastleCost, upgradeCastleLevel } from '../redux/castleStateSlic
 
 import CastleModal from './CastleModal';
 
-const PlayerInfo = ({ playerId, name, handleShowCastleModal, handleCloseModal, activeModal }) => {
+const PlayerInfo = ({ playerId, handleShowCastleModal, handleCloseModal, activeModal, currentPlayer }) => {
   const castleLevel = useSelector(state => state.castleState.players[playerId]?.castleLevel);
   const castleCost = useSelector(state => state.castleState.players[playerId]?.castleCost);
   const goldToSpendThisTurn = useSelector(state => state.goldState.players[playerId]?.goldToSpendThisTurn);
@@ -35,22 +35,28 @@ const PlayerInfo = ({ playerId, name, handleShowCastleModal, handleCloseModal, a
     }
   };
 
+  const isCastleModalActive = activeModal.type === 'castle' && activeModal.playerId === playerId;
+
   return (
     <>
-      <div className={styles.info}>
-        <div className={styles.name}>{name}</div>
+      <div
+        className={`${styles.info} ${
+          currentPlayer === 'playerOne' && playerId === 'playerOne' ? styles.blue : styles.red
+        }`}>
         <div className={styles.score}>
           <div className={styles.gold}>
             <FontAwesomeIcon className={styles.goldIcon} icon={faCoins} />
             <p className={styles.goldAmount}>{totalGold}</p>
           </div>
-          <div className={styles.castle} onClick={() => handleShowCastleModal(playerId)}>
+          <div
+            className={`${styles.castle} ${isCastleModalActive ? styles.activeCastle : ''}`}
+            onClick={() => handleShowCastleModal(playerId)}>
             <FontAwesomeIcon className={styles.castleIcon} icon={faFortAwesome} />
             <p className={styles.castleLevel}>{castleLevel}</p>
           </div>
         </div>
       </div>
-      {activeModal.type === 'castle' && activeModal.playerId === playerId && (
+      {isCastleModalActive && (
         <CastleModal
           castleCost={castleCost}
           playerId={playerId}

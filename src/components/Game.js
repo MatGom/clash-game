@@ -243,12 +243,12 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame, resetGame
           key={player.id}
           playerId={player.id}
           playerClass={player.playerClass}
-          name={player.name}
           camps={player.camps}
           handleShowCampModal={handleShowCampModal}
           handleShowCastleModal={handleShowCastleModal}
           handleCloseModal={handleCloseModal}
           activeModal={activeModal}
+          currentPlayer={currentPlayer}
         />
       ))}
       {showBattleResults ? (

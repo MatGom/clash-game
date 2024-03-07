@@ -1,26 +1,16 @@
 .info {
   height: 40px;
   display: flex;
-  background: #788037;
-  color: #2d300c;
+  justify-content: center;
+  color: #f4f4f4;
   font-weight: bold;
-  box-shadow: 0 0 2px 2px #2d300c;
-
-  .name {
-    width: 40%;
-    font-size: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
 
   .score {
-    width: 60%;
+    width: 86%;
     display: flex;
+    justify-content: space-between;
 
     .gold {
-      height: 100%;
-      width: 50%;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -33,19 +23,18 @@
       &Amount {
         margin-left: 10px;
         font-size: 20px;
+        color: #ffd700;
       }
     }
 
     .castle {
-      height: 100%;
-      width: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
 
       &Icon {
         font-size: 24px;
-        color: #4b4a47;
+        color: #b0bec5;
       }
 
       &Level {
@@ -56,9 +45,30 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        border: 2px solid #2d300c;
+        color: #b0bec5;
+        border: 2px solid #b0bec5;
         border-radius: 50%;
       }
     }
   }
+}
+
+.activeCastle {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+  filter: brightness(1.5);
+}
+
+.blue {
+  background-color: #2b3b55;
+  background-image: linear-gradient(145deg, rgba(43, 59, 85, 0.6) 40%, transparent 40%),
+    linear-gradient(325deg, rgba(43, 59, 85, 0.6) 40%, transparent 40%);
+  box-shadow: inset 0 0 20px #111, 0 0 20px #000;
+}
+
+.red {
+  background-color: #552b2b;
+  background-image: linear-gradient(145deg, rgba(85, 43, 43, 0.6) 40%, transparent 40%),
+    linear-gradient(325deg, rgba(85, 43, 43, 0.6) 40%, transparent 40%);
+  box-shadow: inset 0 0 20px #111, 0 0 20px #000;
 }
