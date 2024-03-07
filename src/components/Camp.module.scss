@@ -5,16 +5,16 @@
   display: flex;
   flex-direction: column;
   border-radius: 10px;
-  box-shadow: 0 0 2px 2px #945104;
+  box-shadow: inset 0 0 20px #111, 0 0 20px #000;
 
-  &Image {
+  &Icon {
     height: 60px;
     width: 100%;
     font-size: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #945104;
+    color: #cd7f32;
   }
 
   &Stats {
@@ -27,22 +27,39 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #d03737;
+    color: #ff5733;
   }
 
   &Defence {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #4b58be;
+    color: #4db8c8;
   }
 
   .campStatIcon {
-    font-size: 12px;
+    font-size: 10px;
   }
 
   .campStat {
     margin-left: 2px;
     font-size: 12px;
   }
+}
+
+.blueCamp {
+  color: #2b3b55;
+  background-color: #2b3b55;
+  box-shadow: inset 0 0 10px #111, 0 0 10px #000;
+}
+
+.redCamp {
+  color: #552b2b;
+  background-color: #552b2b;
+  box-shadow: inset 0 0 10px #111, 0 0 10px #000;
+}
+
+.activeCamp {
+  transform: scale(1.02);
+  filter: brightness(1.3);
 }

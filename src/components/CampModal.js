@@ -18,8 +18,8 @@ const CampModal = ({ playerId, campId, name, handleCloseModal, currentPlayer }) 
       }`}>
       <h2 className={styles.campName}>{name}</h2>
       <div className={styles.campStats}>
-        <p>Attack {campAttack}</p>
-        <p>Defence {campDefence}</p>
+        <p className={styles.attack}>Attack {campAttack}</p>
+        <p className={styles.defence}>Defence {campDefence}</p>
       </div>
       <div className={styles.unitsWrapper}>
         {units.map(unit => (

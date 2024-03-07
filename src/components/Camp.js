@@ -11,10 +11,16 @@ const Camp = ({ playerId, campId, name, handleShowCampModal, handleCloseModal, a
   const campAttack = useSelector(state => state.campStatsState.totalCampAttack[campId]);
   const campDefence = useSelector(state => state.campStatsState.totalCampDefence[campId]);
 
+  const isCampModalActive = activeModal.type === 'camp' && activeModal.campId === campId;
+
   return (
     <>
-      <div className={`${styles.camp} camp`} onClick={() => handleShowCampModal(campId)}>
-        <div className={styles.campImage}>
+      <div
+        className={`${styles.camp} camp ${
+          currentPlayer === 'playerOne' && playerId === 'playerOne' ? styles.blueCamp : styles.redCamp
+        } ${isCampModalActive ? styles.activeCamp : ''}`}
+        onClick={() => handleShowCampModal(campId)}>
+        <div className={styles.campIcon}>
           <FontAwesomeIcon icon={faCampground} />
         </div>
         <div className={styles.campStats}>
@@ -28,7 +34,7 @@ const Camp = ({ playerId, campId, name, handleShowCampModal, handleCloseModal, a
           </div>
         </div>
       </div>
-      {activeModal.type === 'camp' && activeModal.campId === campId && (
+      {isCampModalActive && (
         <CampModal
           playerId={playerId}
           campId={campId}
