@@ -63,6 +63,7 @@ const PlayerInfo = ({ playerId, handleShowCastleModal, handleCloseModal, activeM
           goldToSpendThisTurn={goldToSpendThisTurn}
           upgradeCastle={handleUpgradeCastleModal}
           closeModal={handleCloseModal}
+          currentPlayer={currentPlayer}
         />
       )}
     </>
