@@ -7,7 +7,7 @@ import { increaseOwned } from '../redux/unitsOwnedStateSlice';
 import { increaseAttack, increaseDefence } from '../redux/campStatsStateSlice';
 import { decreaseTotalGold, decreaseGoldToSpendThisTurn } from '../redux/goldStateSlice';
 
-const UnitCard = ({ playerId, campId, unitId, name, icon, attack, defence, cost }) => {
+const UnitCard = ({ playerId, campId, unitId, name, icon, attack, defence, cost, currentPlayer }) => {
   const unitsOwned = useSelector(state => state.unitsOwnedState.camps[campId]?.[unitId]) || 0;
   const goldToSpendThisTurn = useSelector(state => state.goldState.players[playerId]?.goldToSpendThisTurn);
 
@@ -26,10 +26,13 @@ const UnitCard = ({ playerId, campId, unitId, name, icon, attack, defence, cost 
   };
 
   return (
-    <div className={styles.unit}>
-      <h3 className={styles.unitTitle}>{name}</h3>
-      <div className={styles.unitImage}>{icon}</div>
-      <div className={styles.unitStats}>
+    <div
+      className={`${styles.unitCard} ${
+        currentPlayer === 'playerOne' && playerId === 'playerOne' ? styles.unitCardBorderBlue : styles.unitCardBorderRed
+      }`}>
+      <h3 className={styles.unitCardTitle}>{name}</h3>
+      <div className={styles.unitCardIcon}>{icon}</div>
+      <div className={styles.unitCardStats}>
         <p>Attack: {attack}</p>
         <p>Defence: {defence}</p>
         <p>Cost: {cost}</p>

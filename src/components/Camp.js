@@ -7,7 +7,7 @@ import { faCampground, faShield, faSkull } from '@fortawesome/free-solid-svg-ico
 
 import CampModal from './CampModal';
 
-const Camp = ({ playerId, campId, name, handleShowCampModal, handleCloseModal, activeModal }) => {
+const Camp = ({ playerId, campId, name, handleShowCampModal, handleCloseModal, activeModal, currentPlayer }) => {
   const campAttack = useSelector(state => state.campStatsState.totalCampAttack[campId]);
   const campDefence = useSelector(state => state.campStatsState.totalCampDefence[campId]);
 
@@ -29,7 +29,13 @@ const Camp = ({ playerId, campId, name, handleShowCampModal, handleCloseModal, a
         </div>
       </div>
       {activeModal.type === 'camp' && activeModal.campId === campId && (
-        <CampModal playerId={playerId} campId={campId} name={name} handleCloseModal={handleCloseModal} />
+        <CampModal
+          playerId={playerId}
+          campId={campId}
+          name={name}
+          handleCloseModal={handleCloseModal}
+          currentPlayer={currentPlayer}
+        />
       )}
     </>
   );

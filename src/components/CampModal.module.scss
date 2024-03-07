@@ -1,32 +1,28 @@
 .campModal {
   position: absolute;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
   width: 100%;
-  height: 75%;
+  height: 78%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  background: #03ad39;
-  box-shadow: 0 0 2px 2px #03ad39;
+  color: #f4f4f4;
   z-index: 3;
 
   .campName {
     padding: 4px;
-    font-size: 18px;
+    font-size: 1.1em;
     text-transform: uppercase;
   }
 
   .campStats {
-    margin: 2px;
-    padding: 2px;
+    font-size: 1em;
     width: 100%;
     display: flex;
     justify-content: space-around;
     font-weight: bold;
-    background: #d9ff00;
   }
 
   .unitsWrapper {
@@ -35,8 +31,22 @@
     flex-wrap: wrap;
   }
 
-  .goldThisTurn {
-    padding: 4px;
-    font-size: 14px;
+  .goldToSpendThisTurn {
+    margin: 3px;
+    font-size: 0.8em;
   }
+}
+
+.blue {
+  background-color: #2b3b55;
+  background-image: linear-gradient(145deg, rgba(43, 59, 85, 0.6) 40%, transparent 40%),
+    linear-gradient(325deg, rgba(43, 59, 85, 0.6) 40%, transparent 40%);
+  box-shadow: inset 0 0 20px #111, 0 0 20px #000;
+}
+
+.red {
+  background-color: #552b2b;
+  background-image: linear-gradient(145deg, rgba(85, 43, 43, 0.6) 40%, transparent 40%),
+    linear-gradient(325deg, rgba(85, 43, 43, 0.6) 40%, transparent 40%);
+  box-shadow: inset 0 0 20px #111, 0 0 20px #000;
 }

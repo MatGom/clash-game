@@ -2,7 +2,7 @@ import styles from './PlayerCamps.module.scss';
 
 import Camp from './Camp';
 
-const PlayerCamps = ({ playerId, camps, handleShowCampModal, handleCloseModal, activeModal }) => {
+const PlayerCamps = ({ playerId, camps, handleShowCampModal, handleCloseModal, activeModal, currentPlayer }) => {
   return (
     <div className={styles.playerCamps}>
       {camps.map(camp => (
@@ -14,6 +14,7 @@ const PlayerCamps = ({ playerId, camps, handleShowCampModal, handleCloseModal, a
           handleShowCampModal={handleShowCampModal}
           handleCloseModal={handleCloseModal}
           activeModal={activeModal}
+          currentPlayer={currentPlayer}
         />
       ))}
     </div>

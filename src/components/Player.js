@@ -26,6 +26,7 @@ const Player = ({
         handleShowCampModal={handleShowCampModal}
         handleCloseModal={handleCloseModal}
         activeModal={activeModal}
+        currentPlayer={currentPlayer}
       />
     </div>
   );
