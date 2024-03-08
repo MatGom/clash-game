@@ -1,31 +1,85 @@
 .rulesModal {
   position: absolute;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
   width: 100%;
   min-height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  background: #9ded89;
-  font-family: Lato, sans-serif;
+  color: #251a12;
+  background-color: #a67c52;
+  background-image: linear-gradient(145deg, rgba(166, 124, 82, 0.6) 40%, transparent 40%),
+    linear-gradient(325deg, rgba(166, 124, 82, 0.6) 40%, transparent 40%);
+  box-shadow: inset 0 0 20px #333, 0 0 20px #222;
+  font-family: 'Cinzel', serif;
   z-index: 3;
 
   &Title {
-    margin: 10px;
-    font-size: 30px;
+    margin: 20px;
+    font-size: 2em;
   }
 
   &Rules {
     margin-bottom: 20px;
-    width: 80%;
+    width: 85%;
+
+    .rulesTitle {
+      font-size: 1.5em;
+      text-align: center;
+    }
+
+    .rulesSubtitle {
+      margin: 12px auto;
+      font-size: 1.3em;
+      text-align: center;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    p {
+      margin-bottom: 20px;
+      font-size: 0.8em;
+      color: black;
+    }
+
+    strong {
+      display: block;
+      margin: 10px;
+      text-align: center;
+      font-size: 0.9em;
+    }
+
+    .conditions {
+      font-size: 0.8em;
+      text-align: start;
+
+      li {
+        margin-bottom: 5px;
+      }
+
+      strong {
+        margin: 10px auto;
+        text-align: start;
+        font-size: 1em;
+      }
+    }
+
+    a {
+      font-weight: bold;
+      text-decoration: none;
+      color: #2b3b55;
+    }
   }
 
   .closeModal {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    color: #3d2c1f;
+    font-size: 20px;
+    top: 14px;
+    right: 14px;
   }
 }

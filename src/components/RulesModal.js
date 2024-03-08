@@ -3,27 +3,111 @@ import styles from './RulesModal.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 
+import { settings } from '../data/settings';
+
 const RulesModal = ({ closeModal }) => {
   return (
     <div className={styles.rulesModal}>
       <h2 className={styles.rulesModalTitle}>Rules</h2>
-      <p className={styles.rulesModalRules}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. Turpis massa sed elementum tempus egestas. Natoque penatibus et magnis dis parturient montes. Eget
-        nunc scelerisque viverra mauris in aliquam. Euismod lacinia at quis risus sed vulputate odio ut. Nibh tortor id
-        aliquet lectus. Enim lobortis scelerisque fermentum dui faucibus. Purus sit amet volutpat consequat mauris nunc
-        congue nisi. Quam pellentesque nec nam aliquam sem et. Ultricies mi quis hendrerit dolor magna. Id diam vel quam
-        elementum pulvinar etiam. Sapien faucibus et molestie ac feugiat sed lectus. Condimentum lacinia quis vel eros
-        donec ac odio. Dignissim suspendisse in est ante. Placerat in egestas erat imperdiet sed euismod. Nisi
-        scelerisque eu ultrices vitae auctor eu. Malesuada fames ac turpis egestas maecenas pharetra convallis posuere
-        morbi. Felis bibendum ut tristique et egestas quis. Nunc id cursus metus aliquam. Adipiscing bibendum est
-        ultricies integer quis auctor elit sed. Feugiat nisl pretium fusce id. Id neque aliquam vestibulum morbi. Est
-        placerat in egestas erat imperdiet sed euismod. Aliquet porttitor lacus luctus accumsan tortor posuere. Sed sed
-        risus pretium quam. Sed turpis tincidunt id aliquet risus feugiat. Pulvinar neque laoreet suspendisse interdum
-        consectetur libero id faucibus. Eget mi proin sed libero enim sed faucibus turpis. Porttitor rhoncus dolor purus
-        non enim praesent elementum facilisis leo. Non blandit massa enim nec dui nunc mattis enim. Proin sed libero
-        enim sed faucibus turpis in eu mi
-      </p>
+      <div className={styles.rulesModalRules}>
+        <h3 className={styles.rulesTitle}>Clash Game</h3>
+        <h4 className={styles.rulesSubtitle}>A Strategy Game for Two Players</h4>
+        <p>
+          Welcome to Clash Game, a strategic contest designed for two players. Prepare to enter your names and embark on
+          a turn-based journey where player one kicks off the game. Navigate through resource management, castle
+          upgrades, and intense battles to emerge victorious.
+        </p>
+
+        <h4 className={styles.rulesSubtitle}>Game Resources</h4>
+        <ul>
+          <li>
+            <strong>Starting Conditions</strong>
+            <p>
+              Each player begins with {settings.gold.total.initial} gold and a spending limit of{' '}
+              {settings.gold.limit.thisTurn.initial} gold per turn.
+            </p>
+          </li>
+          <li>
+            <strong>Assets</strong> <p>Every player owns a castle and three military camps.</p>
+          </li>
+        </ul>
+
+        <h4 className={styles.rulesSubtitle}>Turn Phase</h4>
+        <p>The game unfolds in turns, starting with player one. During your turn, you have several options:</p>
+        <ul>
+          <li>
+            <strong>Upgrade the Castle</strong>
+            <p>
+              Upgrade your castle to boost gold income by {settings.gold.income.increaseBy} and increase your spending
+              limit by {settings.gold.limit.nextTurn.increaseBy} gold per turn, starting from the next round.
+            </p>
+          </li>
+          <li>
+            <strong>Train Units in Camps</strong>
+            <p>
+              Improve your camps' total attack and defense stats. Note: Opponents' camp stats remain hidden during this
+              phase.
+            </p>
+          </li>
+        </ul>
+        <p>
+          After completing a turn, the next player takes their turn. When both players have acted,
+          battle phase begins.
+        </p>
+
+        <h4 className={styles.rulesSubtitle}>Battle Phase</h4>
+        <p>
+          As the battle commences, all camp stats are revealed. Each camp from one player faces off against the
+          corresponding camp of the other player.
+        </p>
+        <ul>
+          <li>
+            <strong>Victory Conditions</strong>
+            <p>
+              To win a camp clash, a player's units in a camp must have higher attack than the opponent's defense and at
+              least equal defense against the opponent's attack. Failing to meet these conditions results in a draw.
+            </p>
+          </li>
+        </ul>
+
+        <h4 className={styles.rulesSubtitle}>Battle Phase Scoring</h4>
+        <p>
+          The player with more camp victories wins the battle phase. If there's no clear winner, the turn ends in a
+          draw.
+        </p>
+        <strong>Gold Rewards</strong>
+        <p>
+          Victorious players claim a portion of the opponent's gold, calculated based on the number of camp victories:
+        </p>
+        <ul className={styles.conditions}>
+          <li>
+            <strong>One victory more than the opponent:</strong> The winning player takes {settings.loot.percent}% of the opponent's total
+            gold.
+          </li>
+          <li>
+            <strong>Two victories more than the opponent:</strong> The winning player takes {settings.loot.percent + 10}% of the opponent's total
+            gold.
+          </li>
+          <li>
+            <strong>Three victories more than the opponent:</strong> The winning player takes {settings.loot.percent + 20}% of the opponent's
+            total gold.
+          </li>
+        </ul>
+
+        <h4 className={styles.rulesSubtitle}>End Game</h4>
+        <p>The game concludes after {settings.turns.maximum} turns. The player with the most accumulated gold is declared the winner.</p>
+
+        <h4 className={styles.rulesSubtitle}>Conclusion</h4>
+        <p>
+          Embark on this strategic journey, where careful planning and bold decisions lead to glory. Good luck, and
+          enjoy the game!
+        </p>
+
+        <h4 className={styles.rulesSubtitle}>Credits</h4>
+        <p>
+          Game Designer and Creator: <a href='https://mateuszgomolka.com'>Mateusz Gomolka</a>
+        </p>
+      </div>
       <div className={styles.closeModal} onClick={closeModal}>
         <FontAwesomeIcon icon={faCircleXmark} />
       </div>
