@@ -7,7 +7,16 @@ import { faCampground, faShield, faSkull } from '@fortawesome/free-solid-svg-ico
 
 import CampModal from './CampModal';
 
-const Camp = ({ playerId, campId, name, handleShowCampModal, handleCloseModal, activeModal, currentPlayer }) => {
+const Camp = ({
+  playerId,
+  campId,
+  name,
+  handleShowCampModal,
+  handleCloseModal,
+  activeModal,
+  currentPlayer,
+  showBattleResults,
+}) => {
   const campAttack = useSelector(state => state.campStatsState.totalCampAttack[campId]);
   const campDefence = useSelector(state => state.campStatsState.totalCampDefence[campId]);
 
@@ -19,7 +28,11 @@ const Camp = ({ playerId, campId, name, handleShowCampModal, handleCloseModal, a
         className={`${styles.camp} camp ${
           currentPlayer === 'playerOne' && playerId === 'playerOne' ? styles.blueCamp : styles.redCamp
         } ${isCampModalActive ? styles.activeCamp : ''}`}
-        onClick={() => handleShowCampModal(campId)}>
+        onClick={() => {
+          if (!showBattleResults) {
+            handleShowCampModal(campId);
+          }
+        }}>
         <div className={styles.campIcon}>
           <FontAwesomeIcon icon={faCampground} />
         </div>

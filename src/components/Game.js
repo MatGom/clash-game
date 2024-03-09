@@ -257,6 +257,7 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, resetGame }) => {
           handleCloseModal={handleCloseModal}
           activeModal={activeModal}
           currentPlayer={currentPlayer}
+          showBattleResults={showBattleResults}
         />
       ))}
       {showBattleResults ? (

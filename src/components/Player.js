@@ -10,6 +10,7 @@ const Player = ({
   handleCloseModal,
   activeModal,
   currentPlayer,
+  showBattleResults,
 }) => {
   return (
     <div className={playerClass}>
@@ -19,6 +20,7 @@ const Player = ({
         handleCloseModal={handleCloseModal}
         activeModal={activeModal}
         currentPlayer={currentPlayer}
+        showBattleResults={showBattleResults}
       />
       <PlayerCamps
         playerId={playerId}
@@ -27,6 +29,7 @@ const Player = ({
         handleCloseModal={handleCloseModal}
         activeModal={activeModal}
         currentPlayer={currentPlayer}
+        showBattleResults={showBattleResults}
       />
     </div>
   );
