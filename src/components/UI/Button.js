@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Button.module.scss';
 
-const Button = ({ children, onClick, theme, size }) => {
+const Button = ({ children, onClick, theme, size, disabled }) => {
   const getSizeClass = size => {
     switch (size) {
       case 'extra-small':
@@ -18,7 +18,7 @@ const Button = ({ children, onClick, theme, size }) => {
   };
 
   return (
-    <button className={`${styles.button} ${styles[theme]} ${getSizeClass(size)}`} onClick={onClick}>
+    <button disabled={disabled} className={`${styles.button} ${styles[theme]} ${getSizeClass(size)}`} onClick={onClick}>
       {children}
     </button>
   );

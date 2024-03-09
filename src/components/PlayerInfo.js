@@ -31,7 +31,7 @@ const PlayerInfo = ({ playerId, handleShowCastleModal, handleCloseModal, activeM
       dispatch(upgradeGoldIncome({ playerId }));
       dispatch(upgradeGoldToSpendNextTurn({ playerId }));
     } else {
-      alert('No more gold!');
+      return;
     }
   };
 

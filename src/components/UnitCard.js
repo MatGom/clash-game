@@ -21,7 +21,7 @@ const UnitCard = ({ playerId, campId, unitId, name, icon, attack, defence, cost,
       dispatch(increaseAttack({ campId, attack }));
       dispatch(increaseDefence({ campId, defence }));
     } else {
-      alert('No more gold!');
+      return;
     }
   };
 
@@ -38,7 +38,11 @@ const UnitCard = ({ playerId, campId, unitId, name, icon, attack, defence, cost,
         <p>Cost: {cost}</p>
         <p>Owned: {unitsOwned}</p>
       </div>
-      <Button theme='sapphire' size='extra-small' onClick={handleBuyUnit}>
+      <Button
+        disabled={goldToSpendThisTurn < cost}
+        theme={goldToSpendThisTurn < cost ? 'disabled' : 'emerald'}
+        size='extra-small'
+        onClick={handleBuyUnit}>
         Train
       </Button>
     </div>

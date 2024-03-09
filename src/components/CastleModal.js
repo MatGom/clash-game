@@ -55,7 +55,11 @@ const CastleModal = ({ castleCost, playerId, upgradeCastle, closeModal, currentP
         <p className={styles.castleUpgradeCost}>
           Cost <FontAwesomeIcon className={styles.goldIcon} icon={faCoins} /> {castleCost}
         </p>
-        <Button theme='sapphire' size='small' onClick={() => upgradeCastle(playerId)}>
+        <Button
+          disabled={goldToSpendThisTurn < castleCost}
+          theme={goldToSpendThisTurn < castleCost ? 'disabled' : 'emerald'}
+          size='small'
+          onClick={() => upgradeCastle(playerId)}>
           Upgrade
         </Button>
         <Button theme='ruby' size='small' onClick={closeModal}>
