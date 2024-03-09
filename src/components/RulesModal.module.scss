@@ -16,22 +16,19 @@
   font-family: 'Cinzel', serif;
   z-index: 3;
 
-  &Title {
-    margin: 20px;
-    font-size: 2em;
-  }
-
   &Rules {
     margin-bottom: 20px;
     width: 85%;
 
     .rulesTitle {
+      margin-top: 30px;
+      margin-bottom: 10px;
       font-size: 1.5em;
       text-align: center;
     }
 
     .rulesSubtitle {
-      margin: 12px auto;
+      margin: 14px auto;
       font-size: 1.3em;
       text-align: center;
     }
@@ -76,7 +73,7 @@
   }
 
   .closeModal {
-    position: absolute;
+    position: fixed;
     color: #3d2c1f;
     font-size: 20px;
     top: 14px;

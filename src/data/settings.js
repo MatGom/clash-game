@@ -21,7 +21,7 @@ export const settings = {
     },
     unit3: {
       id: 'unit3',
-      name: 'Wizzard',
+      name: 'Wizard',
       attack: 40,
       defence: 10,
       cost: 50,

@@ -8,17 +8,16 @@ import { settings } from '../data/settings';
 const RulesModal = ({ closeModal }) => {
   return (
     <div className={styles.rulesModal}>
-      <h2 className={styles.rulesModalTitle}>Rules</h2>
       <div className={styles.rulesModalRules}>
-        <h3 className={styles.rulesTitle}>Clash Game</h3>
-        <h4 className={styles.rulesSubtitle}>A Strategy Game for Two Players</h4>
+        <h2 className={styles.rulesTitle}>Clash Game</h2>
+        <h3 className={styles.rulesSubtitle}>A Strategy Game for Two Players</h3>
         <p>
           Welcome to Clash Game, a strategic contest designed for two players. Prepare to enter your names and embark on
           a turn-based journey where player one kicks off the game. Navigate through resource management, castle
           upgrades, and intense battles to emerge victorious.
         </p>
 
-        <h4 className={styles.rulesSubtitle}>Game Resources</h4>
+        <h3 className={styles.rulesSubtitle}>Game Resources</h3>
         <ul>
           <li>
             <strong>Starting Conditions</strong>
@@ -32,7 +31,7 @@ const RulesModal = ({ closeModal }) => {
           </li>
         </ul>
 
-        <h4 className={styles.rulesSubtitle}>Turn Phase</h4>
+        <h3 className={styles.rulesSubtitle}>Turn Phase</h3>
         <p>The game unfolds in turns, starting with player one. During your turn, you have several options:</p>
         <ul>
           <li>
@@ -55,7 +54,7 @@ const RulesModal = ({ closeModal }) => {
           battle phase begins.
         </p>
 
-        <h4 className={styles.rulesSubtitle}>Battle Phase</h4>
+        <h3 className={styles.rulesSubtitle}>Battle Phase</h3>
         <p>
           As the battle commences, all camp stats are revealed. Each camp from one player faces off against the
           corresponding camp of the other player.
@@ -70,7 +69,7 @@ const RulesModal = ({ closeModal }) => {
           </li>
         </ul>
 
-        <h4 className={styles.rulesSubtitle}>Battle Phase Scoring</h4>
+        <h3 className={styles.rulesSubtitle}>Battle Phase Scoring</h3>
         <p>
           The player with more camp victories wins the battle phase. If there's no clear winner, the turn ends in a
           draw.
@@ -94,16 +93,16 @@ const RulesModal = ({ closeModal }) => {
           </li>
         </ul>
 
-        <h4 className={styles.rulesSubtitle}>End Game</h4>
+        <h3 className={styles.rulesSubtitle}>End Game</h3>
         <p>The game concludes after {settings.turns.maximum} turns. The player with the most accumulated gold is declared the winner.</p>
 
-        <h4 className={styles.rulesSubtitle}>Conclusion</h4>
+        <h3 className={styles.rulesSubtitle}>Conclusion</h3>
         <p>
           Embark on this strategic journey, where careful planning and bold decisions lead to glory. Good luck, and
           enjoy the game!
         </p>
 
-        <h4 className={styles.rulesSubtitle}>Credits</h4>
+        <h3 className={styles.rulesSubtitle}>Credits</h3>
         <p>
           Game Designer and Creator: <a href='https://mateuszgomolka.com'>Mateusz Gomolka</a>
         </p>
