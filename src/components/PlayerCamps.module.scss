@@ -3,3 +3,9 @@
   display: flex;
   justify-content: space-around;
 }
+
+@media (min-width: 400px) {
+  .playerCamps {
+    height: 100px;
+  }
+}
