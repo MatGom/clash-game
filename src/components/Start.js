@@ -31,11 +31,6 @@ const Start = () => {
     }
   };
 
-  const handleEndGame = () => {
-    alert('Game Over! Thanks for playing.');
-    setGameIsOn(false);
-  };
-
   const resetGame = () => {
     setPlayerOneName('');
     setPlayerTwoName('');
@@ -98,7 +93,6 @@ const Start = () => {
           playerOneName={playerOneName}
           playerTwoName={playerTwoName}
           showRulesModal={handleShowRulesModal}
-          endGame={handleEndGame}
           resetGame={resetGame}
         />
       )}

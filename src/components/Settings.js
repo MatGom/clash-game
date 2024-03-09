@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import styles from './Settings.module.scss';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,17 +6,7 @@ import { faCircleQuestion, faGear } from '@fortawesome/free-solid-svg-icons';
 import SettingsModal from './SettingsModal';
 import Button from './UI/Button';
 
-const Settings = ({ endTurn, showRulesModal, endGame }) => {
-  const [settingsModalIsOpen, setSettingsModalIsOpen] = useState(false);
-
-  const handleShowSettingsModal = () => {
-    setSettingsModalIsOpen(true);
-  };
-
-  const handleCloseSettingsModal = () => {
-    setSettingsModalIsOpen(false);
-  };
-
+const Settings = ({ endTurn, restartGame, showRulesModal, showSettingsModal, closeModal, activeModal }) => {
   return (
     <>
       <div className={styles.settings}>
@@ -26,9 +14,9 @@ const Settings = ({ endTurn, showRulesModal, endGame }) => {
         <Button theme='ruby' size='medium' onClick={endTurn}>
           End turn
         </Button>
-        <FontAwesomeIcon className={styles.settingsIcon} onClick={handleShowSettingsModal} icon={faGear} />
+        <FontAwesomeIcon className={styles.settingsIcon} onClick={showSettingsModal} icon={faGear} />
       </div>
-      {settingsModalIsOpen ? <SettingsModal closeSettingsModal={handleCloseSettingsModal} endGame={endGame} /> : null}
+      {activeModal.type === 'settings' && <SettingsModal closeModal={closeModal} restartGame={restartGame} />}
     </>
   );
 };

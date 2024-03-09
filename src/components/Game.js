@@ -12,7 +12,7 @@ import { updateTotalGold, transferGold, setGoldToSpendNextTurn } from '../redux/
 import { settings } from '../data/settings';
 import StartTurnModal from './StartTurnModal';
 
-const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame, resetGame }) => {
+const Game = ({ playerOneName, playerTwoName, showRulesModal, resetGame }) => {
   const { loot } = settings;
 
   const [currentPlayer, setCurrentPlayer] = useState('playerOne');
@@ -178,6 +178,10 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame, resetGame
     setActiveModal({ type: 'castle', campId: null, playerId });
   };
 
+  const handleShowSettingsModal = () => {
+    setActiveModal({ type: 'settings', campId: null, playerId: null });
+  };
+
   const handleCloseModal = () => {
     setActiveModal({ type: null, campId: null, playerId: null });
   };
@@ -267,7 +271,14 @@ const Game = ({ playerOneName, playerTwoName, showRulesModal, endGame, resetGame
           turnResult={turnResult}
         />
       ) : (
-        <Settings showRulesModal={showRulesModal} endGame={endGame} endTurn={endTurn} />
+        <Settings
+          restartGame={restartGame}
+          endTurn={endTurn}
+          closeModal={handleCloseModal}
+          showRulesModal={showRulesModal}
+          showSettingsModal={handleShowSettingsModal}
+          activeModal={activeModal}
+        />
       )}
       {showGameResultsModal && (
         <GameResultsModal restartGame={restartGame} playerOneName={playerOneName} playerTwoName={playerTwoName} />

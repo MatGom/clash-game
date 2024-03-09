@@ -1,16 +1,19 @@
 import styles from './SettingsModal.module.scss';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
+import Button from './UI/Button';
 
-const SettingsModal = ({ closeSettingsModal, endGame }) => {
+const SettingsModal = ({ closeModal, restartGame }) => {
   return (
     <div className={styles.settingsModal}>
-      <div className={styles.closeModal} onClick={closeSettingsModal}>
-        <FontAwesomeIcon icon={faCircleXmark} />
+      <h2>Restart game?</h2>
+      <div>
+        <Button theme='emerald' size='medium' onClick={restartGame}>
+          Yes
+        </Button>
+        <Button theme='ruby' size='medium' onClick={closeModal}>
+          Cancel
+        </Button>
       </div>
-      <h2>Settings</h2>
-      <button onClick={endGame}>End game</button>
     </div>
   );
 };
