@@ -6,9 +6,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFortAwesome } from '@fortawesome/free-brands-svg-icons';
 import { faCoins } from '@fortawesome/free-solid-svg-icons';
 
-import Button from './UI/Button';
+import Button from '../../../UI/Button';
 
-import { settings } from '../data/settings';
+import { settings } from '../../../../data/settings-data';
 
 const { gold } = settings;
 

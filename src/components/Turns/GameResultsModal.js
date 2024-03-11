@@ -1,6 +1,6 @@
 import styles from './GameResultsModal.module.scss';
 
-import Button from './UI/Button';
+import Button from '../UI/Button';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCoins } from '@fortawesome/free-solid-svg-icons';

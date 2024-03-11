@@ -1,16 +1,16 @@
 import { useState } from 'react';
 import styles from './Game.module.scss';
 
-import Player from './Player';
-import Settings from './Settings';
-import EndTurnScore from './EndTurnScore';
-import GameResultsModal from './GameResultsModal';
+import Player from './Player/Player';
+import Settings from './Settings/Settings';
+import EndTurnScore from './Turns/EndTurnScore';
+import GameResultsModal from './Turns/GameResultsModal';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { updateTotalGold, transferGold, setGoldToSpendNextTurn } from '../redux/goldStateSlice';
 
-import { settings } from '../data/settings';
-import StartTurnModal from './StartTurnModal';
+import { settings } from '../data/settings-data';
+import StartTurnModal from './Turns/StartTurnModal';
 
 const Game = ({ playerOneName, playerTwoName, showRulesModal, resetGame }) => {
   const { loot } = settings;

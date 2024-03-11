@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { settings } from '../data/settings';
+import { settings } from '../data/settings-data';
 
 const { castle } = settings;
 

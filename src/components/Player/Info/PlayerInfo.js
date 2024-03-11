@@ -10,10 +10,10 @@ import {
   decreaseGoldToSpendThisTurn,
   decreaseTotalGold,
   upgradeGoldIncome,
-} from '../redux/goldStateSlice';
-import { increaseCastleCost, upgradeCastleLevel } from '../redux/castleStateSlice';
+} from '../../../redux/goldStateSlice';
+import { increaseCastleCost, upgradeCastleLevel } from '../../../redux/castleStateSlice';
 
-import CastleModal from './CastleModal';
+import CastleModal from './Modal/CastleModal';
 
 const PlayerInfo = ({
   playerId,

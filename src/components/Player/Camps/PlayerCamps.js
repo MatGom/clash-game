@@ -1,6 +1,6 @@
 import styles from './PlayerCamps.module.scss';
 
-import Camp from './Camp';
+import Camp from './Camp/Camp';
 
 const PlayerCamps = ({
   playerId,

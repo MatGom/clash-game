@@ -1,8 +1,8 @@
 import styles from './EndTurnScore.module.scss';
 
-import Button from './UI/Button';
+import Button from '../UI/Button';
 
-import { settings } from '../data/settings';
+import { settings } from '../../data/settings-data';
 
 const { turns } = settings;
 

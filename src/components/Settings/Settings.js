@@ -3,8 +3,8 @@ import styles from './Settings.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleQuestion, faGear } from '@fortawesome/free-solid-svg-icons';
 
-import SettingsModal from './SettingsModal';
-import Button from './UI/Button';
+import SettingsModal from './SettingsModal/SettingsModal';
+import Button from '../UI/Button';
 
 const Settings = ({ endTurn, restartGame, showRulesModal, showSettingsModal, closeModal, activeModal }) => {
   return (

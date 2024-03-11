@@ -3,7 +3,7 @@ import styles from './RulesModal.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 
-import { settings } from '../data/settings';
+import { settings } from '../../../data/settings-data';
 
 const RulesModal = ({ closeModal }) => {
   return (
@@ -50,8 +50,7 @@ const RulesModal = ({ closeModal }) => {
           </li>
         </ul>
         <p>
-          After completing a turn, the next player takes their turn. When both players have acted,
-          battle phase begins.
+          After completing a turn, the next player takes their turn. When both players have acted, battle phase begins.
         </p>
 
         <h3 className={styles.rulesSubtitle}>Battle Phase</h3>
@@ -80,21 +79,24 @@ const RulesModal = ({ closeModal }) => {
         </p>
         <ul className={styles.conditions}>
           <li>
-            <strong>One victory more than the opponent:</strong> The winning player takes {settings.loot.percent}% of the opponent's total
-            gold.
+            <strong>One victory more than the opponent:</strong> The winning player takes {settings.loot.percent}% of
+            the opponent's total gold.
           </li>
           <li>
-            <strong>Two victories more than the opponent:</strong> The winning player takes {settings.loot.percent + 10}% of the opponent's total
-            gold.
+            <strong>Two victories more than the opponent:</strong> The winning player takes {settings.loot.percent + 10}
+            % of the opponent's total gold.
           </li>
           <li>
-            <strong>Three victories more than the opponent:</strong> The winning player takes {settings.loot.percent + 20}% of the opponent's
-            total gold.
+            <strong>Three victories more than the opponent:</strong> The winning player takes{' '}
+            {settings.loot.percent + 20}% of the opponent's total gold.
           </li>
         </ul>
 
         <h3 className={styles.rulesSubtitle}>End Game</h3>
-        <p>The game concludes after {settings.turns.maximum} turns. The player with the most accumulated gold is declared the winner.</p>
+        <p>
+          The game concludes after {settings.turns.maximum} turns. The player with the most accumulated gold is declared
+          the winner.
+        </p>
 
         <h3 className={styles.rulesSubtitle}>Conclusion</h3>
         <p>

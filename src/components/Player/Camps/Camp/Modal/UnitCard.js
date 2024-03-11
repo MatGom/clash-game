@@ -1,11 +1,11 @@
 import styles from './UnitCard.module.scss';
 
-import Button from './UI/Button';
+import Button from '../../../../UI/Button';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { increaseOwned } from '../redux/unitsOwnedStateSlice';
-import { increaseAttack, increaseDefence } from '../redux/campStatsStateSlice';
-import { decreaseTotalGold, decreaseGoldToSpendThisTurn } from '../redux/goldStateSlice';
+import { increaseOwned } from '../../../../../redux/unitsOwnedStateSlice';
+import { increaseAttack, increaseDefence } from '../../../../../redux/campStatsStateSlice';
+import { decreaseTotalGold, decreaseGoldToSpendThisTurn } from '../../../../../redux/goldStateSlice';
 
 const UnitCard = ({ playerId, campId, unitId, name, icon, attack, defence, cost, currentPlayer }) => {
   const unitsOwned = useSelector(state => state.unitsOwnedState.camps[campId]?.[unitId]) || 0;

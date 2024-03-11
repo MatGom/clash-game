@@ -1,6 +1,6 @@
 import styles from './SettingsModal.module.scss';
 
-import Button from './UI/Button';
+import Button from '../../UI/Button';
 
 const SettingsModal = ({ closeModal, restartGame }) => {
   return (

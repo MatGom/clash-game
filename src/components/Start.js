@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import styles from './Start.module.scss';
 
 import Game from './Game';
-import RulesModal from './RulesModal';
+import RulesModal from './Settings/RulesModal/RulesModal';
 import Button from './UI/Button';
 
 import { resetCastle } from '../redux/castleStateSlice';

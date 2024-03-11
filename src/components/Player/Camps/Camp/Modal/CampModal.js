@@ -1,10 +1,10 @@
 import styles from './CampModal.module.scss';
 
-import { units } from '../data/units-data';
+import { units } from '../../../../../data/units-data';
 import { useSelector } from 'react-redux';
 
 import UnitCard from './UnitCard';
-import Button from './UI/Button';
+import Button from '../../../../UI/Button';
 
 const CampModal = ({ playerId, campId, name, handleCloseModal, currentPlayer }) => {
   const campAttack = useSelector(state => state.campStatsState.totalCampAttack[campId]);

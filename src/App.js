@@ -1,5 +1,5 @@
 import Start from './components/Start';
-import LandscapeInfo from './components/LandscapeInfo';
+import LandscapeInfo from './components/UI/LandscapeInfo';
 
 function App() {
   return (

@@ -1,5 +1,5 @@
-import PlayerInfo from './PlayerInfo';
-import PlayerCamps from './PlayerCamps';
+import PlayerInfo from './Info/PlayerInfo';
+import PlayerCamps from './Camps/PlayerCamps';
 
 const Player = ({
   playerId,

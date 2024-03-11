@@ -1,4 +1,4 @@
-import { settings } from './settings';
+import { settings } from './settings-data';
 
 export const units = [
   {
