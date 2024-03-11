@@ -53,3 +53,23 @@
     linear-gradient(325deg, rgba(107, 107, 107, 0.6) 40%, transparent 40%);
   box-shadow: inset 0 0 20px #333, 0 0 20px #222;
 }
+
+@media (min-width: 600px) {
+  .endTurnScore {
+    .turnOutcome {
+      font-size: 1.4em;
+    }
+
+    .turnOutcomeMessage {
+      font-size: 1.2em;
+    }
+
+    .campResults {
+      font-size: 1.2em;
+    }
+
+    .campWinner {
+      font-size: 1em;
+    }
+  }
+}

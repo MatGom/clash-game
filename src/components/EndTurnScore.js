@@ -31,7 +31,7 @@ const EndTurnScore = ({
       <p className={styles.turnOutcome}>Turn {turnNumber} outcome</p>
       <p className={styles.turnOutcomeMessage}>{endTurnOutcomeMessage}</p>
       <div>
-        <p className={styles.campResults}>Camp results</p>
+        <p className={styles.campResults}>Camp battle results</p>
         <p className={styles.campWinner}>{campOneWinner === 'Draw' ? `Camp 1: Draw` : `Camp 1: ${campOneWinner}`}</p>
         <p className={styles.campWinner}>{campTwoWinner === 'Draw' ? `Camp 2: Draw` : `Camp 2: ${campTwoWinner}`}</p>
         <p className={styles.campWinner}>

@@ -50,3 +50,19 @@
     linear-gradient(325deg, rgba(107, 107, 107, 0.6) 40%, transparent 40%);
   box-shadow: inset 0 0 20px #333, 0 0 20px #222;
 }
+
+@media (min-width: 600px) {
+  .gameResultsModal {
+    .gameResultsTitle {
+      font-size: 2em;
+    }
+
+    .gameResultsMessage {
+      font-size: 1.4em;
+    }
+
+    .gameResultsScore {
+      font-size: 1.2em;
+    }
+  }
+}

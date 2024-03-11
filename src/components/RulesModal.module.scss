@@ -2,7 +2,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   min-height: 100%;
   display: flex;
   flex-direction: column;
@@ -14,7 +14,7 @@
     linear-gradient(325deg, rgba(166, 124, 82, 0.6) 40%, transparent 40%);
   box-shadow: inset 0 0 20px #333, 0 0 20px #222;
   font-family: 'Cinzel', serif;
-  z-index: 3;
+  z-index: 10;
 
   &Rules {
     margin-bottom: 20px;
@@ -73,10 +73,42 @@
   }
 
   .closeModal {
-    position: fixed;
+    position: absolute;
     color: #3d2c1f;
     font-size: 20px;
     top: 14px;
     right: 14px;
+    cursor: pointer;
+  }
+}
+
+@media (min-width: 750px) {
+  .rulesModal {
+    &Rules {
+      .rulesTitle {
+        margin-top: 40px;
+        font-size: 1.8em;
+      }
+
+      .rulesSubtitle {
+        font-size: 1.5em;
+      }
+
+      p {
+        font-size: 1em;
+      }
+
+      strong {
+        font-size: 1.1em;
+      }
+
+      .conditions {
+        font-size: 1em;
+
+        strong {
+          font-size: 1.1em;
+        }
+      }
+    }
   }
 }

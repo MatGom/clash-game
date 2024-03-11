@@ -31,6 +31,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      cursor: pointer;
 
       &Icon {
         font-size: 24px;
@@ -54,8 +55,6 @@
 }
 
 .activeCastle {
-  transform: scale(1.1);
-  transition: transform 0.3s ease;
   filter: brightness(1.5);
 }
 

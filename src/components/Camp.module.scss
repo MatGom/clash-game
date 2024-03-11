@@ -6,6 +6,7 @@
   flex-direction: column;
   border-radius: 10px;
   box-shadow: inset 0 0 20px #111, 0 0 20px #000;
+  cursor: pointer;
 
   &Icon {
     height: 60px;
@@ -68,6 +69,24 @@
   .camp {
     &Icon {
       height: 72px;
+    }
+  }
+}
+
+@media (min-width: 600px) {
+  .camp {
+    &Icon {
+      height: 84px;
+      font-size: 40px;
+    }
+
+    .campStatIcon {
+      font-size: 1em;
+    }
+
+    .campStat {
+      margin-left: 10px;
+      font-size: 1em;
     }
   }
 }

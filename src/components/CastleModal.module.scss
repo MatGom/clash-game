@@ -96,3 +96,44 @@
 .castleBorderRed {
   box-shadow: inset 0 0 3px #111, 0 0 3px #000;
 }
+
+@media (min-width: 600px) {
+  .castleModal {
+    .castleHeader {
+      .castleTitle {
+        font-size: 2em;
+      }
+  
+      .castleLevel {
+        font-size: 1.2em;
+      }
+    }
+
+    .castleIcon {
+      font-size: 70px;
+    }
+
+    .castleInfo {
+      width: 80%;
+  
+      .castleLevelInfo {
+        width: 100%;
+        font-size: 1em;
+      }
+  
+      .goldLevelInfo {
+        font-size: 0.9em;
+      }
+    }
+
+    .castleUpgradeWrapper {
+      .castleUpgradeCost {
+        font-size: 1.3em;
+      }
+    }
+
+    .goldToSpendThisTurn {
+      font-size: 1em;
+    }
+  }
+}
